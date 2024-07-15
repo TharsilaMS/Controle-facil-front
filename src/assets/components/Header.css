@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+  }
+  .title{
+    color: #048552;
+    font-size: 20px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .auth-buttons button {
+    margin-left: 10px;
+    border-radius: 50px;
+    border-color: #048552;
+    background-color: #048552;
+  }
+  

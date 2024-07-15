@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+  background-color: #F5F5F5;
+}
+
+.hero {
+  padding: 20px;
+  background-color: #f0f0f0;
+  background-color: #edfdf2;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+}
+
