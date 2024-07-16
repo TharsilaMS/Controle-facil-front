@@ -1,13 +1,14 @@
 import React from 'react';
 import './Header.css';
-
+import images from '../images/logocf.png'
 const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <img src="path/to/logo.png" alt="logo" />
-        <h1 className="title">Controle Fácil</h1>
+      <img src={images} alt="Logo da empresa" />
+       
       </div>
+       <div className="title"><h1>Controle Fácil</h1> </div>
       <nav>
         <ul>
           <li><a href="#quem-somos">Quem somos</a></li>

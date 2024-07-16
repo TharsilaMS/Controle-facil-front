@@ -1,18 +1,28 @@
+html, body {
+  margin: 0;           /* Remove margens padrão */
+  padding: 0;          /* Remove preenchimentos padrão */
+  width: 100%;         /* 100% da largura */
+  height: 100%;        /* 100% da altura */
+}
 .App {
   text-align: center;
   background-color: #F5F5F5;
 }
 
 .hero {
-  padding: 20px;
-  background-color: #f0f0f0;
-  background-color: #edfdf2;
+  padding: 90px;
+  
+  background-color: #d6f9e1;
+  
 }
-
+.subtitle{
+  display: block;
+}
 .features {
   display: flex;
   justify-content: space-around;
   padding: 20px;
+  flex-direction: column;
 }
 
 .feature-list {

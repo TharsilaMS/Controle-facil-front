@@ -12,7 +12,7 @@ function App() {
           <h1>Controle suas finanças, de uma forma <span>simples</span> para uma vida financeira mais inteligente.</h1>
         </section>
         <section className="features">
-          <h2>Nossos principais recursos</h2>
+          <div className="subtitle"> <h2>Nossos principais recursos</h2></div>
           <div className="feature-list">
             <Feature title="Limite de gastos" description="Defina o quanto você pode gastar em cada categoria e economize sem esforço." />
             <Feature title="Controle por Categoria" description="Organize seus gastos por categoria, para maior controle." />
