@@ -1,0 +1,25 @@
+.headerOuter {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+    background-color: #048552;
+    padding-bottom: 0px; 
+  }
+
+  
+  
+  
+  .headerOuter .navbar-brand,
+  .headerOuter .nav-link {
+    color: white; /* Define a cor do texto dos links */
+  }
+  
+  .headerOuter .nav-link:hover {
+    color: #c0ffee; /* Cor ao passar o mouse sobre os links */
+  }
+  
+  .headerOuter .navbar-collapse {
+    justify-content: space-between; /* Ajusta o espaço entre os itens do menu */
+  }
+  

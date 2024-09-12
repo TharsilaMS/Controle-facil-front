@@ -1,0 +1,25 @@
+.footer {
+    background: linear-gradient(to bottom, #048552,#235742); 
+    padding: 30px;
+    color: #ffffff; 
+    text-align: center; 
+}
+
+.links{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+   
+}
+.social-media{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
