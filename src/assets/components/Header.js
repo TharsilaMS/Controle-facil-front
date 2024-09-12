@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-      <img src={images} alt="Logo da empresa" />
+      <img src={images} alt="Logo da empresa" className="img-fluid"/>
        
       </div>
        <div className="title"><h1>Controle Fácil</h1> </div>
@@ -16,8 +16,8 @@ const Header = () => {
         </ul>
       </nav>
       <div className="auth-buttons">
-        <button>Criar conta</button>
-        <button>Entrar</button>
+      <button class="btn btn-primary">Criar conta</button>
+      <button class="btn btn-primary">Entrar</button>
       </div>
     </header>
   );

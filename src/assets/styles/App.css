@@ -1,3 +1,5 @@
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
 html, body {
   margin: 0;           /* Remove margens padrão */
   padding: 0;          /* Remove preenchimentos padrão */
@@ -6,15 +8,27 @@ html, body {
 }
 .App {
   text-align: center;
-  background-color: #F5F5F5;
+  background-color: #d6f9e1;
+
+}
+.hero {
+  display: flex; /* Usar Flexbox para alinhar o conteúdo lado a lado */
+  align-items: center; /* Alinha verticalmente ao centro */
+  padding: 60px 0; /* Espaçamento superior e inferior */
+  margin: 0; /* Remove margens externas */ 
+  
 }
 
-.hero {
-  padding: 90px;
-  
-  background-color: #d6f9e1;
-  
+.hero h1 {
+  flex: 1; /* Faz com que o texto ocupe o espaço disponível */
+  margin-right: 20px; /* Espaço entre o texto e a imagem */
 }
+
+.hero .col-md-6 {
+  flex: 1; /* Faz com que a imagem ocupe o espaço restante */
+  padding: 0; /* Remove o padding da coluna */
+}
+
 .subtitle{
   display: block;
 }
@@ -30,3 +44,9 @@ html, body {
   flex-direction: column;
 }
 
+.hero img {
+  display: block; /* Remove o espaço abaixo da imagem */
+  max-width: 100%; /* Garante que a imagem não exceda o contêiner */
+  height: auto; /* Mantém a proporção da imagem */
+  margin: 0; /* Remove qualquer margem externa */
+}
