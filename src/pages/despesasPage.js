@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllDespesas, updateDespesa, deleteDespesa } from '../service/despesas';
 import { Container, ListGroup, Spinner, Alert, Card, Button, Modal } from 'react-bootstrap';
+import './DespesasPage.css'; // Importar o arquivo CSS personalizado
 
 const DespesasPage = () => {
   const [despesas, setDespesas] = useState([]);
@@ -86,7 +87,7 @@ const DespesasPage = () => {
 
   if (error) {
     return (
-      <Container className="mt-4">
+      <Container className="mt-4 text-center">
         <h1>Lista de Despesas</h1>
         <Alert variant="danger">{error}</Alert>
       </Container>
@@ -95,12 +96,12 @@ const DespesasPage = () => {
 
   return (
     <Container className="mt-4">
-      <h1 className="mb-4">Lista de Despesas</h1>
+      <h1 className="mb-4 text-center">Lista de Despesas</h1>
       <div className="row">
         {despesas.map((despesa) => (
           <div className="col-md-4 mb-3" key={despesa.id}>
             <Card>
-              <Card.Body>
+              <Card.Body className="text-center">
                 <Card.Title>{despesa.descricao}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                   {new Date(despesa.data).toLocaleDateString()} 
@@ -109,17 +110,19 @@ const DespesasPage = () => {
                   Valor: <strong>R${despesa.valor.toFixed(2)}</strong>
                 </Card.Text>
                 <ListGroup variant="flush">
-                  <ListGroup.Item>
+                  <ListGroup.Item className="text-center">
                     Categoria: <span className="badge bg-primary">{despesa.categoriaDespesaNome}</span>
                   </ListGroup.Item>
-                  <ListGroup.Item>
+                  <ListGroup.Item className="text-center">
                     Tipo: <span className={`badge ${despesa.tipo === 'FIXA' ? 'bg-success' : 'bg-warning'}`}>
                       {despesa.tipo}
                     </span>
                   </ListGroup.Item>
                 </ListGroup>
-                <Button variant="primary" onClick={() => handleEditClick(despesa)}>Editar</Button>
-                <Button variant="danger" className="ms-2" onClick={() => handleDeleteClick(despesa.id)}>Excluir</Button>
+                <div className="d-flex justify-content-center mt-3">
+                  <Button variant="primary" onClick={() => handleEditClick(despesa)} className="me-2">Editar</Button>
+                  <Button variant="danger" onClick={() => handleDeleteClick(despesa.id)}>Excluir</Button>
+                </div>
               </Card.Body>
             </Card>
           </div>

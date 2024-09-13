@@ -1,0 +1,12 @@
+/* DespesasPage.css */
+
+.card-body-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espaço entre os botões */
+  }
+  
+  .category-background {
+    background-color: #f0f0f0; /* Ajuste conforme necessário */
+  }
+  
