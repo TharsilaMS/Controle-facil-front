@@ -7,6 +7,7 @@ const NovaDespesaForm = () => {
   const [valor, setValor] = useState('');
   const [categoria, setCategoria] = useState('');
   const [tipo, setTipo] = useState('FIXA'); // Tipo padrão
+  const [data, setData] = useState(''); // Novo estado para a data
   const [loading, setLoading] = useState(false); // Estado de carregamento
   const [error, setError] = useState(null); // Estado de erro
   const usuarioId = '32300000-0000-0000-0000-000000000000'; // Definido como um valor fixo
@@ -20,7 +21,8 @@ const NovaDespesaForm = () => {
       descricao, 
       valor, 
       categoriaDespesaNome: categoria,
-      tipo
+      tipo,
+      data // Adiciona a data ao objeto despesa
     };
 
     try {
@@ -30,6 +32,7 @@ const NovaDespesaForm = () => {
       setValor('');
       setCategoria('');
       setTipo('FIXA'); // Resetar o tipo para o valor padrão
+      setData(''); // Resetar a data
     } catch (err) {
       setError('Erro ao salvar despesa.'); // Define o erro
     } finally {
@@ -86,6 +89,16 @@ const NovaDespesaForm = () => {
             <option value="FIXA">Fixa</option>
             <option value="VARIAVEL">Variável</option>
           </Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="formData">
+          <Form.Label>Data</Form.Label>
+          <Form.Control 
+            type="date" 
+            value={data}
+            onChange={(e) => setData(e.target.value)}
+            required
+          />
         </Form.Group>
 
         <Button variant="primary" type="submit" disabled={loading}>

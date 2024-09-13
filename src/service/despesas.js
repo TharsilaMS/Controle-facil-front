@@ -1,19 +1,14 @@
-// src/services/despesas.js
 import api from './api';
-
-// Função para buscar todas as despesas
 export const getAllDespesas = async () => {
   try {
     const response = await api.get('/despesas');
     return response.data;
   } catch (error) {
     console.error('Erro ao buscar despesas:', error);
+    throw error;
   }
 };
 
-
-// Função para criar uma nova despesa
-// src/service/despesas.js
 
 export const createDespesa = async (despesa) => {
   try {
@@ -34,3 +29,15 @@ export const createDespesa = async (despesa) => {
     console.error('Erro ao criar despesa:', error);
   }
 };
+
+
+
+
+export const deleteDespesa = async (id) => {
+  await api.delete(`/despesas/${id}`);
+};
+
+export const updateDespesa = async (id, despesa) => {
+  await api.put(`/despesas/${id}`, despesa);
+};
+
