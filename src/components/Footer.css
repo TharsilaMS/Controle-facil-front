@@ -23,3 +23,25 @@ a{
     align-items: center;
     justify-content: center;
 }
+/* src/assets/styles/App.css */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  .footer {
+    background-color: #f1f1f1; /* Ajuste a cor conforme necessário */
+    padding: 1rem;
+    text-align: center;
+  }
+  

@@ -5,7 +5,10 @@
   padding: 0px 20px;
   background-color: #F5F5F5;
   padding-bottom: 0px;
+
+
 }
+
 img {
   max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
   height: auto;

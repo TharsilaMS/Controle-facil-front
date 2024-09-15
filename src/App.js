@@ -1,29 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HeaderHome from './components/Header'; // Importando o header da página inicial
-import HeaderOther from './components/HeaderOther'; // Importando o header das páginas internas
 import FooterHome from './components/Footer'; // Importando o footer da página inicial
-import FooterOther from './components/FooterOther'; // Importando o footer das páginas internas
 import Feature from './components/Feature';
-import DespesasPage from './pages/despesasPage';
+import DespesasPage from './pages/DespesasPages'; // Corrigido para capitalização
 import NovaDespesaForm from './components/NovaDespesaForm'; // Importando o formulário de nova despesa
+import NovaRenda from './components/NovaRenda'; // Corrigido para NovaRenda
+import RendaPage from './pages/RendaPage'; // Confirme o caminho e o nome do arquivo
 import './assets/styles/App.css';
 import revenueBro from './assets/images/Revenue-bro.png';
+import Home from './pages/Home'; // Importando a página inicial
 
-const Layout = ({ children }) => {
-  const location = useLocation();
-  
-  // Determina qual header e footer renderizar com base na rota
-  const isHomePage = location.pathname === '/';
-  
-  return (
-    <>
-      {isHomePage ? <HeaderHome /> : <HeaderOther />}
-      <main>{children}</main>
-      {isHomePage ? <FooterHome /> : <FooterOther />}
-    </>
-  );
-};
+const Layout = ({ children }) => (
+  <>
+    <HeaderHome />
+    <main>{children}</main>
+    <FooterHome /> 
+  </>
+);
 
 function App() {
   return (
@@ -34,14 +28,10 @@ function App() {
           element={
             <Layout>
               <div className="App">
-                <section className="hero container">
-                  <div className="row align-items-center">
-                    <div className="col-md-6">
-                      <h1>Controle suas finanças, de uma forma <span>simples</span> para uma vida financeira mais inteligente.</h1>
-                    </div>
-                    <div className="col-md-6">
-                      <img src={revenueBro} alt="Descrição da Imagem" className="img-fluid" />
-                    </div>
+                <section className="hero">
+                  <div className="hero-content">
+                    <h1>Controle suas finanças, de uma forma <span>simples</span> para uma vida financeira mais inteligente.</h1>
+                    <img src={revenueBro} alt="Descrição da Imagem" className="hero-image" />
                   </div>
                 </section>
                 <section className="features">
@@ -66,6 +56,16 @@ function App() {
                     />
                   </div>
                 </section>
+                <section className="shortcuts">
+                  <h2>Atalhos</h2>
+                  <ul>
+                    <li><Link to="/despesas">Despesas</Link></li>
+                    <li><Link to="/nova-despesa">Nova Despesa</Link></li>
+                    <li><Link to="/rendas">Rendas</Link></li>
+                    <li><Link to="/create-renda">Nova Renda</Link></li>
+                    <li><Link to="/home">Home</Link></li>
+                  </ul>
+                </section>
               </div>
             </Layout>
           }
@@ -79,10 +79,42 @@ function App() {
           }
         />
         <Route 
+          path="/home" 
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+        <Route 
           path="/nova-despesa" 
           element={
             <Layout>
               <NovaDespesaForm />
+            </Layout>
+          }
+        />
+        <Route 
+          path="/rendas" 
+          element={
+            <Layout>
+              <RendaPage />
+            </Layout>
+          }
+        />
+        <Route 
+          path="/create-renda" 
+          element={
+            <Layout>
+              <NovaRenda />
+            </Layout>
+          }
+        />
+        <Route 
+          path="/rendas/:id" 
+          element={
+            <Layout>
+              <NovaRenda />
             </Layout>
           }
         />

@@ -6,44 +6,50 @@ const NovaDespesaForm = () => {
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState('');
   const [categoria, setCategoria] = useState('');
-  const [tipo, setTipo] = useState('FIXA'); // Tipo padrão
-  const [data, setData] = useState(''); // Novo estado para a data
-  const [loading, setLoading] = useState(false); // Estado de carregamento
-  const [error, setError] = useState(null); // Estado de erro
-  const usuarioId = '32300000-0000-0000-0000-000000000000'; // Definido como um valor fixo
+  const [tipo, setTipo] = useState('FIXA'); 
+  const [data, setData] = useState('');
+  const [loading, setLoading] = useState(false); 
+  const [success, setSuccess] = useState(''); 
+  const [error, setError] = useState(null); 
+
+  const usuarioId = '32300000-0000-0000-0000-000000000000'; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Inicia o carregamento
-    setError(null); // Reseta o erro
+    setLoading(true); 
+    setError(null); 
+    setSuccess(''); 
+
     const despesa = { 
       usuarioId, 
       descricao, 
       valor, 
       categoriaDespesaNome: categoria,
       tipo,
-      data // Adiciona a data ao objeto despesa
+      data 
     };
 
     try {
       await createDespesa(despesa);
-      // Depois de salvar, você pode redirecionar ou limpar o formulário
+      setSuccess('Despesa salva com sucesso!');
+ 
       setDescricao('');
       setValor('');
       setCategoria('');
-      setTipo('FIXA'); // Resetar o tipo para o valor padrão
-      setData(''); // Resetar a data
+      setTipo('FIXA'); 
+      setData(''); 
     } catch (err) {
-      setError('Erro ao salvar despesa.'); // Define o erro
+      setError('Erro ao salvar despesa.'); 
     } finally {
-      setLoading(false); // Finaliza o carregamento
+      setLoading(false);
     }
   };
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-4"style={{ paddingTop: '80px' }}>
       <h2>Adicionar Nova Despesa</h2>
       <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
+        {success && <Alert variant="success">{success}</Alert>}
         {error && <Alert variant="danger">{error}</Alert>}
         <Form.Group controlId="formDescricao">
           <Form.Label>Descrição</Form.Label>

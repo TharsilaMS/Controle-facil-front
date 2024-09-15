@@ -8,4 +8,7 @@ body {
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
-  
+  /* Adiciona padding ao topo para o conteúdo principal */
+.content {
+  padding-top: 90px; /* Ajuste conforme a altura do cabeçalho */
+}

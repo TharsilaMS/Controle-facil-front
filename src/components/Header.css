@@ -2,40 +2,88 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 0px 20px;
+  padding: 10px 20px;
   background-color: #F5F5F5;
-  padding-bottom: 0px;
-}
-img {
-  max-width: 100%; 
-  height: auto;
-  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease; /* Adiciona transição para esconder o cabeçalho */
 }
 
-  .title{
-    color: #048552;
-    font-size: 20px;
- 
-  }
-  
-  .logo img {
-    height: 100px;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin-top: 36px;
-  }
-  
-  .auth-buttons button {
-    padding: 15px 30px;
-    margin-left: 10px;
-    border-radius: 50px;
-    border-color: #048552;
-    background-color: #048552;
-    color:#fff;
-    cursor: pointer; 
-  }
-  
+.header.hidden {
+  transform: translateY(-100%); /* Esconde o cabeçalho para cima */
+}
+
+.logo img {
+  height: 80px; /* Ajuste conforme necessário */
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav li {
+  margin: 0;
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  color: #048552;
+  font-size: 16px; /* Ajuste o tamanho da fonte se necessário */
+}
+
+.home-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.app-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.home-header-content .navbar-nav {
+  display: flex;
+  flex-direction: column; /* Exibe os links verticalmente na página inicial */
+  gap: 10px;
+}
+
+.app-header-content .navbar-nav {
+  display: flex; /* Exibe os links horizontalmente no restante do aplicativo */
+  flex-direction: row;
+  gap: 15px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-buttons button {
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  background-color: #048552;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.auth-buttons button:hover {
+  background-color: #036c43;
+}
+
+.title {
+  font-size: 24px; /* Ajuste o tamanho da fonte do título conforme necessário */
+}
