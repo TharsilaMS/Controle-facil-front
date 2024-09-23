@@ -23,7 +23,7 @@ a{
     align-items: center;
     justify-content: center;
 }
-/* src/assets/styles/App.css */
+
 html, body {
     height: 100%;
     margin: 0;
@@ -40,7 +40,7 @@ html, body {
   }
   
   .footer {
-    background-color: #f1f1f1; /* Ajuste a cor conforme necessário */
+    background-color: #f1f1f1; 
     padding: 1rem;
     text-align: center;
   }

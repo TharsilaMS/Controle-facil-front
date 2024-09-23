@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getAllDespesas, updateDespesa, deleteDespesa } from '../service/despesas';
+import { getAllDespesas, updateDespesa, deleteDespesa } from '../service/Despesas';
 import { Container, ListGroup, Spinner, Alert, Card, Button, Modal } from 'react-bootstrap';
-import './DespesasPage.css'; // Importar o arquivo CSS personalizado
+import './DespesasPage.css'; 
 
 const DespesasPage = () => {
   const [despesas, setDespesas] = useState([]);

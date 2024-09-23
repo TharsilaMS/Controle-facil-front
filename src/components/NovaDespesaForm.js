@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createDespesa } from '../service/despesas';
+import { createDespesa } from '../service/Despesas';
 import { Button, Form, Container, Spinner, Alert } from 'react-bootstrap';
 
 const NovaDespesaForm = () => {

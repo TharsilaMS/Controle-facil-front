@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createRenda } from '../service/rendaApi';
+import { createRenda } from '../service/RendaApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NovaRenda = () => {

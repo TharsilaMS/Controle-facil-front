@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Container, Spinner, Alert } from 'react-bootstrap';
-import { getSaldo } from '../service/saldoApi'; 
+import { getSaldo } from '../service/SaldoApi'; 
 
 const Home = () => {
   const [saldo, setSaldo] = useState(null);

@@ -10,6 +10,11 @@ import RendaPage from './pages/RendaPage'; // Confirme o caminho e o nome do arq
 import './assets/styles/App.css';
 import revenueBro from './assets/images/Revenue-bro.png';
 import Home from './pages/Home'; // Importando a página inicial
+import PrevisaoGastosPage from './pages/PrevisaoGastosPage' ;
+import CreatePrevisaoGastosPage from './pages/CreatePrevisaoGastosPage';
+import MetaSonhoList from './pages/MetaSonhoList'; // Importando a página de listagem de metas
+import CriarMetaSonho from './pages/CriarMetaSonho'; // ajuste o caminho conforme necessário
+
 
 const Layout = ({ children }) => (
   <>
@@ -69,55 +74,21 @@ function App() {
               </div>
             </Layout>
           }
-        />
-        <Route 
-          path="/despesas" 
-          element={
-            <Layout>
-              <DespesasPage />
-            </Layout>
-          }
-        />
-        <Route 
-          path="/home" 
-          element={
-            <Layout>
-              <Home />
-            </Layout>
-          }
-        />
-        <Route 
-          path="/nova-despesa" 
-          element={
-            <Layout>
-              <NovaDespesaForm />
-            </Layout>
-          }
-        />
-        <Route 
-          path="/rendas" 
-          element={
-            <Layout>
-              <RendaPage />
-            </Layout>
-          }
-        />
-        <Route 
-          path="/create-renda" 
-          element={
-            <Layout>
-              <NovaRenda />
-            </Layout>
-          }
-        />
-        <Route 
-          path="/rendas/:id" 
-          element={
-            <Layout>
-              <NovaRenda />
-            </Layout>
-          }
-        />
+          
+          />
+        <Route path="/despesas" element={<Layout><DespesasPage /></Layout>} />
+        <Route path="/home" element={<Layout><Home /></Layout>} />
+        <Route path="/nova-despesa" element={<Layout><NovaDespesaForm /></Layout>} />
+        <Route path="/rendas" element={<Layout><RendaPage /></Layout>} />
+        <Route path="/create-renda" element={<Layout><NovaRenda /></Layout>} />
+        <Route path="/rendas/:id" element={<Layout><NovaRenda /></Layout>} />
+        {/* Rotas para Previsão de Gastos */}
+        <Route path="/previsao-gastos/create" element={<Layout><CreatePrevisaoGastosPage /></Layout>} />
+        <Route path="/previsao-gastos/:usuarioId" element={<Layout><PrevisaoGastosPage /></Layout>} />
+        {/* Rotas para Metas dos Sonhos */}
+        <Route path="/metas" element={<Layout><MetaSonhoList /></Layout>} /> {/* Página de listagem de metas */}
+        <Route path="/nova-meta" element={<Layout><CriarMetaSonho /></Layout>} /> {/* Formulário para nova meta */}
+       
       </Routes>
     </Router>
   );

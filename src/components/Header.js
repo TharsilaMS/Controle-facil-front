@@ -12,18 +12,15 @@ const Header = () => {
     let lastScrollTop = 0;
     const handleScroll = () => {
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      if (currentScroll > lastScrollTop) {
-        setScrolling(true); // Scroll down
-      } else {
-        setScrolling(false); // Scroll up
-      }
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+      setScrolling(currentScroll > lastScrollTop);
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; 
     };
     
     window.addEventListener('scroll', handleScroll);
-    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const usuarioId = '32300000-0000-0000-0000-000000000000'; // ID fixo, altere conforme necessário
 
   return (
     <header className={`header ${isHomePage ? 'home-header' : 'app-header'} ${scrolling ? 'hidden' : ''}`}>
@@ -50,11 +47,17 @@ const Header = () => {
           <h1 className="title">Controle Fácil</h1>
           <nav>
             <ul className="navbar-nav">
-              <li><Link to="/despesas" className="nav-link">Despesas</Link></li>
-              <li><Link to="/nova-despesa" className="nav-link">Nova Despesa</Link></li>
-              <li><Link to="/rendas" className="nav-link">Rendas</Link></li>
-              <li><Link to="/create-renda" className="nav-link">Nova Renda</Link></li>
               <li><Link to="/home" className="nav-link">Home</Link></li>
+              <li><Link to="/despesas" className="nav-link">Despesas</Link></li>
+              <li><Link to="/nova-despesa" className="nav-link">Adicionar Despesa</Link></li>
+              <li><Link to="/rendas" className="nav-link">Rendas</Link></li>
+              <li><Link to="/create-renda" className="nav-link">Adicionar Renda</Link></li>
+              <li><Link to={`/previsao-gastos/create`} className="nav-link">Criar Previsão de Gastos</Link></li>
+              <li><Link to={`/previsao-gastos/${usuarioId}`} className="nav-link">Ver Previsão de Gastos</Link></li>
+              <li><Link to="/metas" className="nav-link">Metas dos Sonhos</Link></li> 
+              <li><Link to="/nova-meta" className="nav-link">Nova Meta dos Sonhos</Link></li> 
+            
+
             </ul>
           </nav>
         </div>

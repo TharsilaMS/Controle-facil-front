@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAllRendas } from '../service/rendaApi';
+import { getAllRendas } from '../service/RendaApi';
 import { Container, Row, Col, Card, ListGroup, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 

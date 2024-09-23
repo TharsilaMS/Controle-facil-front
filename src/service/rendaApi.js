@@ -1,5 +1,5 @@
 
-import api from './api';
+import api from './Api';
 
 export const getAllRendas = async () => {
   try {
