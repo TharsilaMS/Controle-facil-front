@@ -5,7 +5,7 @@ import PrevisaoGastosForm from '../components/PrevisaoGastosForm';
 
 const CreatePrevisaoGastosPage = () => {
   const navigate = useNavigate();
-  const usuarioId = '32300000-0000-0000-0000-000000000000'; // ID fixo
+  const usuarioId = '32300000-0000-0000-0000-000000000000'; 
   const [previsaoExistente, setPrevisaoExistente] = useState(null);
 
   useEffect(() => {
