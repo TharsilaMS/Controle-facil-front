@@ -23,8 +23,17 @@ const Home = () => {
     fetchSaldo();
   }, [usuarioId]);
 
+  // Função para formatar o saldo
+  const formatarSaldo = (valor) => {
+    if (valor === null || valor === undefined) return '0,00';
+    return valor
+      .toFixed(2) // Garante duas casas decimais
+      .replace('.', ',') // Substitui o ponto por vírgula
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
+  };
+
   return (
-    <Container className="mt-4"style={{ paddingTop: '80px' }}>
+    <Container className="mt-4" style={{ paddingTop: '80px' }}>
       <h1>Bem-vindo ao Controle Fácil</h1>
       {loading ? (
         <Spinner animation="border" />
@@ -35,7 +44,7 @@ const Home = () => {
           <Card.Body>
             <Card.Title>Saldo Atual</Card.Title>
             <Card.Text>
-              <h2>{saldo ? saldo.toFixed(2) : '0.00'} R$</h2>
+              <h2>{formatarSaldo(saldo)} R$</h2>
             </Card.Text>
           </Card.Body>
         </Card>

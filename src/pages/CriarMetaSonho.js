@@ -7,6 +7,11 @@ const CriarMetaSonho = () => {
     const [prazo, setPrazo] = useState('');
     const [mensagem, setMensagem] = useState('');
 
+    const formatarData = (data) => {
+        const partes = data.split('-');
+        return `${partes[2]}/${partes[1]}/${partes[0]}`; 
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -14,10 +19,10 @@ const CriarMetaSonho = () => {
             titulo,
             descricao,
             valorAlvo: parseFloat(valorAlvo),
-            valorEconomizado: 0.00,  // Começar com 0
-            prazo,                   // O campo prazo deve estar no formato adequado, se necessário ajustar
-            usuarioId: '20a1c5b0-5ef1-4440-9910-3db411cc7f6e', // ID fixo do usuário
-            status: 'ATIVA',         // Status fixo como "ATIVA"
+            valorEconomizado: 0.00,  
+            prazo: formatarData(prazo), 
+            usuarioId: '20a1c5b0-5ef1-4440-9910-3db411cc7f6e', 
+            status: 'ATIVA',         
         };
 
         try {
@@ -32,7 +37,6 @@ const CriarMetaSonho = () => {
             if (response.ok) {
                 const result = await response.json();
                 setMensagem(`Meta criada com sucesso: ${result.titulo}`);
-                // Limpa os campos do formulário
                 setTitulo('');
                 setDescricao('');
                 setValorAlvo('');
