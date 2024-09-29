@@ -1,0 +1,89 @@
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px; /* Reduzido o padding */
+  background-color: #F5F5F5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease; /* Adiciona transição para esconder o cabeçalho */
+}
+
+.header.hidden {
+  transform: translateY(-100%); /* Esconde o cabeçalho para cima */
+}
+
+.logo img {
+  height: 40px; /* Reduzido a altura da imagem do logo */
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  gap: 10px; /* Reduzido o gap entre os itens */
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav li {
+  margin: 0;
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  color: #048552;
+  font-size: 14px; /* Reduzido o tamanho da fonte */
+}
+
+.home-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.app-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.home-header-content .navbar-nav {
+  display: flex;
+  flex-direction: column; /* Exibe os links verticalmente na página inicial */
+  gap: 5px; /* Reduzido o gap entre os links */
+}
+
+.app-header-content .navbar-nav {
+  display: flex; /* Exibe os links horizontalmente no restante do aplicativo */
+  flex-direction: row;
+  gap: 10px; /* Reduzido o gap entre os links */
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 5px; /* Reduzido o gap entre os botões */
+}
+
+.auth-buttons button {
+  padding: 5px 10px; /* Reduzido o padding dos botões */
+  border-radius: 50px;
+  border: none;
+  background-color: #048552;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.auth-buttons button:hover {
+  background-color: #036c43;
+}
+
+.title {
+  font-size: 20px; /* Ajuste o tamanho do título conforme necessário */
+}
