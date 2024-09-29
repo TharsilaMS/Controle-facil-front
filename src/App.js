@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import HeaderHome from './components/Header'; // Importando o header da página inicial
-import FooterHome from './components/Footer'; // Importando o footer da página inicial
-import Feature from './components/Feature';
+import HeaderHome from './components/header/Header'; // Importando o header da página inicial
+import FooterHome from './components/footer/Footer'; // Importando o footer da página inicial
+import Feature from './components/feature/Feature';
 import DespesasPage from './pages/DespesasPages'; // Corrigido para capitalização
-import NovaDespesaForm from './components/NovaDespesaForm'; // Importando o formulário de nova despesa
-import NovaRenda from './components/NovaRenda'; // Corrigido para NovaRenda
+import NovaDespesaForm from './components/despesa/NovaDespesaForm'; // Importando o formulário de nova despesa
+import NovaRenda from './components/renda/NovaRenda'; // Corrigido para NovaRenda
 import RendaPage from './pages/RendaPage'; // Confirme o caminho e o nome do arquivo
 import './assets/styles/App.css';
 import revenueBro from './assets/images/Revenue-bro.png';
-import Home from './pages/Home'; // Importando a página inicial
+import Home from './pages/home/Home'; // Importando a página inicial
 import PrevisaoGastosPage from './pages/PrevisaoGastosPage' ;
-import CreatePrevisaoGastosPage from './pages/CreatePrevisaoGastosPage';
+import CreatePrevisaoGastosPage from './pages/CriarPrevisaoGastosPage';
 import MetaSonhoList from './pages/MetaSonhoList'; // Importando a página de listagem de metas
 import CriarMetaSonho from './pages/CriarMetaSonho'; // ajuste o caminho conforme necessário
 
