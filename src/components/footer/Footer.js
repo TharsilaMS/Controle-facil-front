@@ -14,25 +14,24 @@ const Footer = () => {
       {isHomePage ? (
         <div className="home-footer-content">
           <div className="links"> 
-            <nav>
-              <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#quem-somos">Quem somos</a></li>
-                <li><a href="#recursos">Recursos</a></li>
-              </ul>
-            </nav>
+          <div className="app-footer-content">
+          <p>&copy; 2024 Controle Fácil</p>
+        </div>
+        
           </div>
+
           <div className="social-media">
-            <a href="#facebook">
-              <FontAwesomeIcon icon={faFacebookF} />
-            </a>
-            <a href="#twitter">
-              <FontAwesomeIcon icon={faXTwitter} />
-            </a>
-            <a href="#linkedin">
-              <FontAwesomeIcon icon={faLinkedinIn} />
-            </a>
-          </div>
+  <a href="https://www.facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
+    <FontAwesomeIcon icon={faFacebookF} />
+  </a>
+  <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">
+    <FontAwesomeIcon icon={faXTwitter} />
+  </a>
+  <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+    <FontAwesomeIcon icon={faLinkedinIn} />
+  </a>
+</div>
+
         </div>
       ) : (
         <div className="app-footer-content">

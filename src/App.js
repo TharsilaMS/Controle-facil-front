@@ -1,20 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import HeaderHome from './components/header/Header'; // Importando o header da página inicial
-import FooterHome from './components/footer/Footer'; // Importando o footer da página inicial
+import HeaderHome from './components/header/Header'; 
+import FooterHome from './components/footer/Footer'; 
 import Feature from './components/feature/Feature';
-import DespesasPage from './pages/DespesasPages'; // Corrigido para capitalização
-import NovaDespesaForm from './components/despesa/NovaDespesaForm'; // Importando o formulário de nova despesa
-import NovaRenda from './components/renda/NovaRenda'; // Corrigido para NovaRenda
-import RendaPage from './pages/RendaPage'; // Confirme o caminho e o nome do arquivo
+import DespesasPage from './pages/DespesasPages'; 
+import NovaDespesaForm from './components/despesa/NovaDespesaForm'; 
+import NovaRenda from './components/renda/NovaRenda'; 
+import RendaPage from './pages/RendaPage'; 
 import './assets/styles/App.css';
 import revenueBro from './assets/images/Revenue-bro.png';
-import Home from './pages/home/Home'; // Importando a página inicial
-import PrevisaoGastosPage from './pages/PrevisaoGastosPage' ;
+import Home from './pages/home/Home'; 
+import PrevisaoGastosPage from './pages/PrevisaoGastosPage';
 import CreatePrevisaoGastosPage from './pages/CriarPrevisaoGastosPage';
-import MetaSonhoList from './pages/MetaSonhoList'; // Importando a página de listagem de metas
-import CriarMetaSonho from './pages/CriarMetaSonho'; // ajuste o caminho conforme necessário
-
+import MetaSonhoList from './pages/MetaSonhoList'; 
+import CriarMetaSonho from './pages/CriarMetaSonho'; 
+import Login from './components/Login';
+import Register from './components/Register';
 
 const Layout = ({ children }) => (
   <>
@@ -33,62 +34,74 @@ function App() {
           element={
             <Layout>
               <div className="App">
-                <section className="hero">
-                  <div className="hero-content">
-                    <h1>Controle suas finanças, de uma forma <span>simples</span> para uma vida financeira mais inteligente.</h1>
-                    <img src={revenueBro} alt="Descrição da Imagem" className="hero-image" />
+              <section className="hero text-center py-5">
+  <div className="container">
+    <h1 className="display-4">
+      Controle suas finanças, de uma forma <span className="text-primary">simples</span> para uma vida financeira mais inteligente.
+    </h1>
+    <img 
+      src={revenueBro} 
+      alt="Descrição da Imagem" 
+      className="hero-image img-fluid" 
+      style={{ width: '50%', maxWidth: '300px' }} 
+    />
+  </div>
+</section>
+
+                <section className="features py-5">
+                  <div className="container">
+                    <div className="subtitle text-center mb-4">
+                      <h2>Nossos principais recursos</h2>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-4 mb-4">
+                        <Feature 
+                          title="Limite de gastos" 
+                          description="Defina o quanto você pode gastar em cada categoria e economize sem esforço." 
+                          icon="fa-bullseye"
+                        />
+                      </div>
+                      <div className="col-md-4 mb-4">
+                        <Feature 
+                          title="Controle por Categoria" 
+                          description="Organize seus gastos por categoria, para maior controle." 
+                          icon="fa-tag"
+                        />
+                      </div>
+                      <div className="col-md-4 mb-4">
+                        <Feature 
+                          title="Controles futuros" 
+                          description="Marque futuras despesas ou recebimentos no calendário." 
+                          icon="fa-calendar-alt"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </section>
-                <section className="features">
-                  <div className="subtitle">
-                    <h2>Nossos principais recursos</h2>
+                <section className="shortcuts py-5">
+                  <div className="container">
+                    <h2 className="text-center mb-4">Atalhos</h2>
+                    <ul className="list-inline text-center">
+                      <li className="list-inline-item"><Link to="/home" className="btn btn-link">Home</Link></li>
+                    </ul>
                   </div>
-                  <div className="feature-list">
-                    <Feature 
-                      title="Limite de gastos" 
-                      description="Defina o quanto você pode gastar em cada categoria e economize sem esforço." 
-                      icon="fa-bullseye"
-                    />
-                    <Feature 
-                      title="Controle por Categoria" 
-                      description="Organize seus gastos por categoria, para maior controle." 
-                      icon="fa-tag"
-                    />
-                    <Feature 
-                      title="Controles futuros" 
-                      description="Marque futuras despesas ou recebimentos no calendário." 
-                      icon="fa-calendar-alt"
-                    />
-                  </div>
-                </section>
-                <section className="shortcuts">
-                  <h2>Atalhos</h2>
-                  <ul>
-                    <li><Link to="/despesas">Despesas</Link></li>
-                    <li><Link to="/nova-despesa">Nova Despesa</Link></li>
-                    <li><Link to="/rendas">Rendas</Link></li>
-                    <li><Link to="/create-renda">Nova Renda</Link></li>
-                    <li><Link to="/home">Home</Link></li>
-                  </ul>
                 </section>
               </div>
             </Layout>
           }
-          
-          />
+        />
         <Route path="/despesas" element={<Layout><DespesasPage /></Layout>} />
         <Route path="/home" element={<Layout><Home /></Layout>} />
         <Route path="/nova-despesa" element={<Layout><NovaDespesaForm /></Layout>} />
         <Route path="/rendas" element={<Layout><RendaPage /></Layout>} />
         <Route path="/create-renda" element={<Layout><NovaRenda /></Layout>} />
         <Route path="/rendas/:id" element={<Layout><NovaRenda /></Layout>} />
-        {/* Rotas para Previsão de Gastos */}
         <Route path="/previsao-gastos/create" element={<Layout><CreatePrevisaoGastosPage /></Layout>} />
         <Route path="/previsao-gastos/:usuarioId" element={<Layout><PrevisaoGastosPage /></Layout>} />
-        {/* Rotas para Metas dos Sonhos */}
-        <Route path="/metas" element={<Layout><MetaSonhoList /></Layout>} /> {/* Página de listagem de metas */}
-        <Route path="/nova-meta" element={<Layout><CriarMetaSonho /></Layout>} /> {/* Formulário para nova meta */}
-       
+        <Route path="/metas" element={<Layout><MetaSonhoList /></Layout>} /> 
+        <Route path="/nova-meta" element={<Layout><CriarMetaSonho /></Layout>} /> 
+        <Route path="/register" element={<Layout><Register /></Layout>} />
+        <Route path="/login" element={<Layout><Login /></Layout>} />
       </Routes>
     </Router>
   );

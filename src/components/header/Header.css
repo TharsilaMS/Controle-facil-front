@@ -1,3 +1,4 @@
+
 .header {
   align-items: center;
   display: flex;
@@ -10,21 +11,28 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  transition: transform 0.3s ease; /* Adiciona transição para esconder o cabeçalho */
+  transition: transform 0.3s ease;
 }
 
 .header.hidden {
-  transform: translateY(-100%); /* Esconde o cabeçalho para cima */
+  transform: translateY(-100%);
 }
 
 .logo img {
   height: 40px; /* Reduzido a altura da imagem do logo */
 }
 
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .navbar-nav {
   list-style: none;
-  display: flex;
-  gap: 10px; /* Reduzido o gap entre os itens */
+  display: flex; /* Mantém a exibição em linha */
+  gap: 15px; /* Aumentei o gap entre os itens para melhor visualização */
   margin: 0;
   padding: 0;
 }
@@ -55,13 +63,13 @@
 
 .home-header-content .navbar-nav {
   display: flex;
-  flex-direction: column; /* Exibe os links verticalmente na página inicial */
-  gap: 5px; /* Reduzido o gap entre os links */
+  flex-direction: row; /* Exibe os links horizontalmente na página inicial */
+  gap: 10px; /* Ajuste o gap entre os links */
 }
 
 .app-header-content .navbar-nav {
   display: flex; /* Exibe os links horizontalmente no restante do aplicativo */
-  flex-direction: row;
+  flex-direction: row; /* Garante que a direção é horizontal */
   gap: 10px; /* Reduzido o gap entre os links */
 }
 

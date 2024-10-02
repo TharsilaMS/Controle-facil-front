@@ -6,7 +6,7 @@ const Home = () => {
   const [saldo, setSaldo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const usuarioId = '32300000-0000-0000-0000-000000000000'; 
+  const usuarioId = localStorage.getItem('usuarioId'); 
 
   useEffect(() => {
     const fetchSaldo = async () => {
@@ -20,15 +20,20 @@ const Home = () => {
       }
     };
 
-    fetchSaldo();
+    if (usuarioId) {
+      fetchSaldo();
+    } else {
+      setError('Usuário não autenticado.');
+      setLoading(false);
+    }
   }, [usuarioId]);
 
   // Função para formatar o saldo
   const formatarSaldo = (valor) => {
     if (valor === null || valor === undefined) return '0,00';
     return valor
-      .toFixed(2) // Garante duas casas decimais
-      .replace('.', ',') // Substitui o ponto por vírgula
+      .toFixed(2)
+      .replace('.', ',')
       .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
   };
 

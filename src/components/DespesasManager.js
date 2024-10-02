@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { deleteDespesa, updateDespesa } from '../service/despesas';
+import { deleteDespesa, updateDespesa } from '../service/Despesas';
 
 const FIXED_ID = '32300000-0000-0000-0000-000000000000'; // ID fixo para teste
 
