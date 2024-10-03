@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 
 const PrevisaoGastosForm = ({ onSubmit, initialData = {}, onCancel }) => {
+
+  const usuarioId = localStorage.getItem('usuarioId');
+
   const [limiteGastos, setLimiteGastos] = useState(initialData.limiteGastos || '');
   const [dataRevisao, setDataRevisao] = useState(initialData.dataRevisao || '');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const previsaoGastos = {
+      id: usuarioId, 
       limiteGastos,
       dataRevisao,
     };

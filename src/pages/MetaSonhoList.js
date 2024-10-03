@@ -1,29 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { getMetasSonho, adicionarValorMeta, updateMetaSonho, deleteMetaSonho } from '../service/MetaSonhoService'; 
 
 const MetaSonhoList = () => {
   const [metas, setMetas] = useState([]);
   const [valorAdicional, setValorAdicional] = useState({});
-  const usuarioId = '32300000-0000-0000-0000-000000000000'; // UUID do usuário
+  const [editandoMeta, setEditandoMeta] = useState(null); 
+  const [metaEditada, setMetaEditada] = useState({}); 
+  const usuarioId = localStorage.getItem('usuarioId'); 
 
-  // Função para buscar as metas do usuário
+
   const fetchMetas = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/metas-sonho`, {
-        params: { usuarioId }
-      });
-      setMetas(response.data);
+      const fetchedMetas = await getMetasSonho(usuarioId); 
+      setMetas(fetchedMetas);
     } catch (error) {
-      console.error(error);
+      console.error('Erro ao buscar metas:', error);
     }
   };
 
-  // Carregar as metas quando o componente é montado
-  useEffect(() => {
-    fetchMetas();
-  }, []);
-
-  // Handle change do input de valor adicional para cada meta
+  // Atualiza o valor no campo de input
   const handleInputChange = (metaId, value) => {
     setValorAdicional({
       ...valorAdicional,
@@ -31,7 +26,7 @@ const MetaSonhoList = () => {
     });
   };
 
-  // Função para adicionar valor à meta
+  
   const handleAdicionarValor = async (metaId) => {
     try {
       const valor = parseFloat(valorAdicional[metaId] || 0);
@@ -40,9 +35,7 @@ const MetaSonhoList = () => {
         return;
       }
 
-      await axios.patch(`http://localhost:8080/api/metas-sonho/${metaId}/adicionar-valor`, null, {
-        params: { valorAdicional: valor }
-      });
+      await adicionarValorMeta(metaId, valor);
 
       const metaAtualizada = metas.find(meta => meta.id === metaId);
       if (metaAtualizada.valorEconomizado + valor >= metaAtualizada.valorAlvo) {
@@ -50,11 +43,42 @@ const MetaSonhoList = () => {
       }
 
       alert('Valor adicionado com sucesso!');
-      setValorAdicional({ ...valorAdicional, [metaId]: '' }); // Limpa o campo após adicionar o valor
-      fetchMetas(); // Atualiza a lista de metas após adicionar o valor
+      setValorAdicional({ ...valorAdicional, [metaId]: '' });
+      fetchMetas();
     } catch (error) {
       console.error('Erro ao adicionar valor à meta:', error);
       alert('Erro ao adicionar valor.');
+    }
+  };
+
+
+  const handleEditarMeta = (meta) => {
+    setEditandoMeta(meta.id); 
+    setMetaEditada(meta); 
+  };
+
+  const handleSalvarEdicao = async (metaId) => {
+    try {
+      await updateMetaSonho(metaId, metaEditada);
+      alert('Meta editada com sucesso!');
+      setEditandoMeta(null); 
+      fetchMetas();
+    } catch (error) {
+      console.error('Erro ao editar a meta:', error);
+      alert('Erro ao editar a meta.');
+    }
+  };
+
+  const handleExcluirMeta = async (metaId) => {
+    try {
+      if (window.confirm('Tem certeza que deseja excluir esta meta?')) {
+        await deleteMetaSonho(metaId);
+        alert('Meta excluída com sucesso!');
+        fetchMetas();
+      }
+    } catch (error) {
+      console.error('Erro ao excluir a meta:', error);
+      alert('Erro ao excluir a meta.');
     }
   };
 
@@ -65,22 +89,58 @@ const MetaSonhoList = () => {
         {metas.map(meta => (
           <li key={meta.id} className={`list-group-item d-flex justify-content-between align-items-center ${meta.valorEconomizado >= meta.valorAlvo ? 'bg-success text-white' : ''}`}>
             <div>
-              <strong>{meta.titulo}</strong>: {meta.descricao} 
-              <br />
-              (Alvo: R$ {meta.valorAlvo}, Economizado: R$ {meta.valorEconomizado})
+              {editandoMeta === meta.id ? (
+                <div>
+                  <input
+                    type="text"
+                    value={metaEditada.titulo}
+                    onChange={(e) => setMetaEditada({ ...metaEditada, titulo: e.target.value })}
+                    className="form-control"
+                  />
+                  <textarea
+                    value={metaEditada.descricao}
+                    onChange={(e) => setMetaEditada({ ...metaEditada, descricao: e.target.value })}
+                    className="form-control mt-2"
+                  />
+                  <button className="btn btn-success mt-2" onClick={() => handleSalvarEdicao(meta.id)}>
+                    Salvar Edição
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <strong>{meta.titulo}</strong>: {meta.descricao}
+                  <br />
+                  (Alvo: R$ {meta.valorAlvo}, Economizado: R$ {meta.valorEconomizado})
+                </div>
+              )}
             </div>
-            {/* Formulário para adicionar valor */}
+
             <div>
               <input
                 type="number"
                 className="form-control"
-                placeholder="Valor adicional"
+                placeholder="Adicione um valor"
                 value={valorAdicional[meta.id] || ''}
                 onChange={(e) => handleInputChange(meta.id, e.target.value)}
+                disabled={meta.valorEconomizado >= meta.valorAlvo}
               />
-              <button className="btn btn-primary mt-2" onClick={() => handleAdicionarValor(meta.id)}>
-                Adicionar Valor
+              <button
+                className="btn btn-primary mt-2"
+                onClick={() => handleAdicionarValor(meta.id)}
+                disabled={meta.valorEconomizado >= meta.valorAlvo}
+              >
+                Adicionar
               </button>
+              {editandoMeta !== meta.id && (
+                <>
+                  <button className="btn btn-warning mt-2" onClick={() => handleEditarMeta(meta)}>
+                    Editar
+                  </button>
+                  <button className="btn btn-danger mt-2" onClick={() => handleExcluirMeta(meta.id)}>
+                    Excluir
+                  </button>
+                </>
+              )}
             </div>
           </li>
         ))}

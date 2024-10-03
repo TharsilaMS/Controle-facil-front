@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createDespesa } from '../../service/Despesas';
+import { createDespesa } from '../../service/Api';
 import { Button, Form, Container, Spinner, Alert } from 'react-bootstrap';
 
 const NovaDespesaForm = () => {
@@ -12,7 +12,8 @@ const NovaDespesaForm = () => {
   const [success, setSuccess] = useState(''); 
   const [error, setError] = useState(null); 
 
-  const usuarioId = '32300000-0000-0000-0000-000000000000'; 
+  
+  const usuarioId = localStorage.getItem('usuarioId'); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ const NovaDespesaForm = () => {
     const despesa = { 
       usuarioId, 
       descricao, 
-      valor, 
+      valor: parseFloat(valor), 
       categoriaDespesaNome: categoria,
       tipo,
       data 
@@ -32,7 +33,8 @@ const NovaDespesaForm = () => {
     try {
       await createDespesa(despesa);
       setSuccess('Despesa salva com sucesso!');
- 
+
+     
       setDescricao('');
       setValor('');
       setCategoria('');
@@ -46,11 +48,12 @@ const NovaDespesaForm = () => {
   };
 
   return (
-    <Container className="mt-4"style={{ paddingTop: '80px' }}>
+    <Container className="mt-4" style={{ paddingTop: '80px' }}>
       <h2>Adicionar Nova Despesa</h2>
       <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
         {success && <Alert variant="success">{success}</Alert>}
         {error && <Alert variant="danger">{error}</Alert>}
+        
         <Form.Group controlId="formDescricao">
           <Form.Label>Descrição</Form.Label>
           <Form.Control 

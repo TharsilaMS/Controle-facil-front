@@ -1,42 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import { getPrevisaoGastos, updatePrevisaoGastos } from '../service/PrevisaoGastosServices'
+import { getPrevisaoGastos, updatePrevisaoGastos } from '../service/PrevisaoGastosServices';
 import PrevisaoGastosForm from '../components/PrevisaoGastosForm';
 
 const PrevisaoGastosPage = () => {
-  const usuarioId = '32300000-0000-0000-0000-000000000000'; // ID fixo
   const [previsaoGastos, setPrevisaoGastos] = useState(null);
   const [editMode, setEditMode] = useState(false);
+  const usuarioId = localStorage.getItem('usuarioId'); 
 
   useEffect(() => {
-    getPrevisaoGastos(usuarioId)
-      .then(response => {
-        setPrevisaoGastos(response.data);
-      })
-      .catch(error => {
-        console.error("Erro ao buscar previsão de gastos", error);
-        alert("Erro ao buscar a previsão de gastos. Tente novamente mais tarde.");
-      });
+    const fetchPrevisaoGastos = async () => {
+      if (usuarioId) {
+        try {
+          const response = await getPrevisaoGastos(usuarioId);
+          console.log("Resposta da API:", response); 
+          setPrevisaoGastos(response); 
+        } catch (error) {
+          console.error("Erro ao buscar previsão de gastos", error);
+          alert("Erro ao buscar a previsão de gastos. Tente novamente mais tarde.");
+        }
+      } else {
+        alert("Usuário não encontrado. Por favor, faça o login novamente.");
+      }
+    };
+
+    fetchPrevisaoGastos(); 
   }, [usuarioId]);
 
-  const handleUpdate = (updatedPrevisaoGastos) => {
+  const handleUpdate = async (updatedPrevisaoGastos) => {
     if (updatedPrevisaoGastos.limiteGastos <= 0) {
       alert("O limite de gastos deve ser um valor positivo.");
       return;
     }
 
-    updatePrevisaoGastos(usuarioId, updatedPrevisaoGastos)
-      .then(() => {
-        setEditMode(false);
-        alert("Previsão de gastos atualizada com sucesso!");
-        return getPrevisaoGastos(usuarioId);
-      })
-      .then(response => {
-        setPrevisaoGastos(response.data);
-      })
-      .catch(error => {
-        console.error("Erro ao atualizar previsão de gastos", error);
-        alert("Erro ao atualizar a previsão de gastos. Tente novamente mais tarde.");
-      });
+    try {
+      await updatePrevisaoGastos(usuarioId, updatedPrevisaoGastos);
+      setEditMode(false);
+      alert("Previsão de gastos atualizada com sucesso!");
+
+     
+      const response = await getPrevisaoGastos(usuarioId);
+      setPrevisaoGastos(response); 
+    } catch (error) {
+      console.error("Erro ao atualizar previsão de gastos", error);
+      alert("Erro ao atualizar a previsão de gastos. Tente novamente mais tarde.");
+    }
   };
 
   const handleCancel = () => {
@@ -51,7 +58,7 @@ const PrevisaoGastosPage = () => {
           <div className="card-text">
             <p><strong>Limite de Gastos:</strong> {previsaoGastos.limiteGastos}</p>
             <p><strong>Gastos Atuais:</strong> {previsaoGastos.gastosAtuais}</p>
-            <p><strong>Data de Revisão:</strong> {previsaoGastos.dataRevisao}</p>
+            <p><strong>Data de Revisão:</strong> {new Date(previsaoGastos.dataRevisao).toLocaleDateString()}</p>
           </div>
           {editMode ? (
             <PrevisaoGastosForm 

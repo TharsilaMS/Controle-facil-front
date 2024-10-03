@@ -3,7 +3,7 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 5px 10px; /* Reduzido o padding */
+  padding: 5px 10px; 
   background-color: #F5F5F5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -19,7 +19,7 @@
 }
 
 .logo img {
-  height: 40px; /* Reduzido a altura da imagem do logo */
+  height: 40px; 
 }
 
 .header-content {
@@ -31,8 +31,8 @@
 
 .navbar-nav {
   list-style: none;
-  display: flex; /* Mantém a exibição em linha */
-  gap: 15px; /* Aumentei o gap entre os itens para melhor visualização */
+  display: flex; 
+  gap: 15px; 
   margin: 0;
   padding: 0;
 }
@@ -44,7 +44,7 @@
 .navbar-nav a {
   text-decoration: none;
   color: #048552;
-  font-size: 14px; /* Reduzido o tamanho da fonte */
+  font-size: 14px; 
 }
 
 .home-header-content {
@@ -63,23 +63,23 @@
 
 .home-header-content .navbar-nav {
   display: flex;
-  flex-direction: row; /* Exibe os links horizontalmente na página inicial */
-  gap: 10px; /* Ajuste o gap entre os links */
+  flex-direction: row; 
+  gap: 10px; 
 }
 
 .app-header-content .navbar-nav {
-  display: flex; /* Exibe os links horizontalmente no restante do aplicativo */
-  flex-direction: row; /* Garante que a direção é horizontal */
-  gap: 10px; /* Reduzido o gap entre os links */
+  display: flex; 
+  flex-direction: row; 
+  gap: 10px; 
 }
 
 .auth-buttons {
   display: flex;
-  gap: 5px; /* Reduzido o gap entre os botões */
+  gap: 5px; 
 }
 
 .auth-buttons button {
-  padding: 5px 10px; /* Reduzido o padding dos botões */
+  padding: 5px 10px; 
   border-radius: 50px;
   border: none;
   background-color: #048552;
@@ -93,5 +93,5 @@
 }
 
 .title {
-  font-size: 20px; /* Ajuste o tamanho do título conforme necessário */
+  font-size: 20px; 
 }

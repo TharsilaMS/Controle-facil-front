@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAllDespesas, updateDespesa, deleteDespesa } from '../service/Despesas';
+import { getDespesasByUsuarioId, updateDespesa, deleteDespesa } from '../service/Api';
 import { Container, ListGroup, Spinner, Alert, Card, Button, Modal } from 'react-bootstrap';
 import './DespesasPage.css'; 
 
@@ -19,8 +19,15 @@ const DespesasPage = () => {
 
   useEffect(() => {
     async function fetchDespesas() {
+      const usuarioId = localStorage.getItem('usuarioId'); 
+      if (!usuarioId) {
+        setError('Usuário não encontrado.');
+        setLoading(false);
+        return;
+      }
+
       try {
-        const data = await getAllDespesas();
+        const data = await getDespesasByUsuarioId(usuarioId); 
         if (Array.isArray(data)) {
           setDespesas(data);
         } else {
@@ -95,7 +102,7 @@ const DespesasPage = () => {
   }
 
   return (
-    <Container className="mt-4"style={{ paddingTop: '80px' }}>
+    <Container className="mt-4" style={{ paddingTop: '80px' }}>
       <h1 className="mb-4 text-center">Lista de Despesas</h1>
       <div className="row">
         {despesas.map((despesa) => (

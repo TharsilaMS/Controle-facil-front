@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; 
 import { Card, Container, Spinner, Alert } from 'react-bootstrap';
 import { getSaldo } from '../../service/SaldosApi';
 
@@ -28,7 +28,7 @@ const Home = () => {
     }
   }, [usuarioId]);
 
-  // Função para formatar o saldo
+
   const formatarSaldo = (valor) => {
     if (valor === null || valor === undefined) return '0,00';
     return valor
@@ -48,9 +48,9 @@ const Home = () => {
         <Card className="mt-4">
           <Card.Body>
             <Card.Title>Saldo Atual</Card.Title>
-            <Card.Text>
-              <h2>{formatarSaldo(saldo)} R$</h2>
-            </Card.Text>
+            <div>
+              <h2>{formatarSaldo(saldo)} R$</h2> 
+            </div>
           </Card.Body>
         </Card>
       )}

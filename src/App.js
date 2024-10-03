@@ -96,8 +96,8 @@ function App() {
         <Route path="/rendas" element={<Layout><RendaPage /></Layout>} />
         <Route path="/create-renda" element={<Layout><NovaRenda /></Layout>} />
         <Route path="/rendas/:id" element={<Layout><NovaRenda /></Layout>} />
-        <Route path="/previsao-gastos/create" element={<Layout><CreatePrevisaoGastosPage /></Layout>} />
-        <Route path="/previsao-gastos/:usuarioId" element={<Layout><PrevisaoGastosPage /></Layout>} />
+        <Route path="/create-previsao-gastos-page" element={<Layout><CreatePrevisaoGastosPage /></Layout>} />
+        <Route path="/previsao-gastos-page" element={<Layout><PrevisaoGastosPage /></Layout>} />
         <Route path="/metas" element={<Layout><MetaSonhoList /></Layout>} /> 
         <Route path="/nova-meta" element={<Layout><CriarMetaSonho /></Layout>} /> 
         <Route path="/register" element={<Layout><Register /></Layout>} />

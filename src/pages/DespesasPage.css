@@ -3,10 +3,10 @@
 .card-body-buttons {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Espaço entre os botões */
+    gap: 10px; 
   }
   
   .category-background {
-    background-color: #f0f0f0; /* Ajuste conforme necessário */
+    background-color: #f0f0f0; 
   }
   

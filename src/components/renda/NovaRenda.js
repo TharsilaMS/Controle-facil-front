@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createRenda } from '../../service/RendaApi';
+import { createRenda } from '../../service/RendasApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NovaRenda = () => {
@@ -10,7 +10,7 @@ const NovaRenda = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
 
-    const usuarioId = '32300000-0000-0000-0000-000000000000';
+    const usuarioId = localStorage.getItem('usuarioId'); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();

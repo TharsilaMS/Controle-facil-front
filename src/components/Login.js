@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Certifique-se de importar o CSS do Bootstrap
-import { useNavigate } from 'react-router-dom'; // Importar useNavigate
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { useNavigate } from 'react-router-dom'; 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-    const navigate = useNavigate(); // Criar uma instância de useNavigate
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,8 +34,8 @@ const Login = () => {
 
                 setSuccess('Login bem-sucedido!');
                 
-                // Redirecionar para a página inicial após login bem-sucedido
-                navigate('/home'); // Substitua '/home' pela rota correta da sua aplicação
+               
+                navigate('/home'); 
             } else {
                 setError('Token não recebido.');
             }

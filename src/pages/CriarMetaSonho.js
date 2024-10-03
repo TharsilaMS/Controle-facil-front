@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createMetaSonho, getMetasSonho } from '../service/MetaSonhoService'; 
+import { Button, Form, Container, Alert } from 'react-bootstrap';
 
 const CriarMetaSonho = () => {
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [valorAlvo, setValorAlvo] = useState('');
     const [prazo, setPrazo] = useState('');
-    const [mensagem, setMensagem] = useState('');
+   
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState('');
+    const [metaAtiva, setMetaAtiva] = useState(false); 
+
+    const usuarioId = localStorage.getItem('usuarioId'); 
+
+   
+    useEffect(() => {
+        const verificarMetaAtiva = async () => {
+            try {
+                const metas = await getMetasSonho(usuarioId);
+                const ativa = metas.some(meta => meta.status === 'ATIVA'); 
+                setMetaAtiva(ativa);
+            } catch (error) {
+                console.error('Erro ao verificar metas ativas:', error);
+                setError('Erro ao verificar metas ativas.');
+            }
+        };
+
+        verificarMetaAtiva();
+    }, [usuarioId]);
 
     const formatarData = (data) => {
         const partes = data.split('-');
@@ -15,88 +38,95 @@ const CriarMetaSonho = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+      
+        if (metaAtiva) {
+            setError('Você já possui uma meta ativa. Conclua sua meta atual antes de criar uma nova.');
+            setSuccess(''); 
+            return;
+        }
+
         const novaMeta = {
             titulo,
             descricao,
             valorAlvo: parseFloat(valorAlvo),
             valorEconomizado: 0.00,  
             prazo: formatarData(prazo), 
-            usuarioId: '20a1c5b0-5ef1-4440-9910-3db411cc7f6e', 
+            usuarioId, 
             status: 'ATIVA',         
         };
 
         try {
-            const response = await fetch('/api/metas-sonho', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(novaMeta),
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                setMensagem(`Meta criada com sucesso: ${result.titulo}`);
-                setTitulo('');
-                setDescricao('');
-                setValorAlvo('');
-                setPrazo('');
-            } else {
-                setMensagem('Erro ao criar a meta. Verifique os dados e tente novamente.');
-            }
+            const result = await createMetaSonho(novaMeta); 
+            setSuccess(`Meta criada com sucesso: ${result.titulo}`);
+            setTitulo('');
+            setDescricao('');
+            setValorAlvo('');
+            setPrazo('');
+            setError(null); 
+            setMetaAtiva(true); 
         } catch (error) {
-            setMensagem('Erro ao se conectar ao servidor.');
+            setError('Erro ao criar a meta. Verifique os dados e tente novamente.');
+            setSuccess(''); 
         }
     };
 
     return (
-        <div>
+        <Container className="mt-4" style={{ paddingTop: '80px' }}>
             <h1>Criar Nova Meta de Sonho</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="titulo">Título:</label>
-                    <input
+            <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
+                {success && <Alert variant="success">{success}</Alert>}
+                {error && <Alert variant="danger">{error}</Alert>}
+
+                <Form.Group controlId="formTitulo">
+                    <Form.Label>Título</Form.Label>
+                    <Form.Control
                         type="text"
-                        id="titulo"
+                        placeholder="Digite o título da meta"
                         value={titulo}
                         onChange={(e) => setTitulo(e.target.value)}
                         required
                     />
-                </div>
-                <div>
-                    <label htmlFor="descricao">Descrição:</label>
-                    <textarea
-                        id="descricao"
+                </Form.Group>
+
+                <Form.Group controlId="formDescricao">
+                    <Form.Label>Descrição</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows={3}
+                        placeholder="Digite a descrição da meta"
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                         required
                     />
-                </div>
-                <div>
-                    <label htmlFor="valorAlvo">Valor Alvo:</label>
-                    <input
+                </Form.Group>
+
+                <Form.Group controlId="formValorAlvo">
+                    <Form.Label>Valor Alvo</Form.Label>
+                    <Form.Control
                         type="number"
-                        id="valorAlvo"
+                        placeholder="Digite o valor alvo da meta"
                         value={valorAlvo}
                         onChange={(e) => setValorAlvo(e.target.value)}
                         step="0.01"
                         required
                     />
-                </div>
-                <div>
-                    <label htmlFor="prazo">Prazo:</label>
-                    <input
+                </Form.Group>
+
+                <Form.Group controlId="formPrazo">
+                    <Form.Label>Prazo</Form.Label>
+                    <Form.Control
                         type="date"
-                        id="prazo"
                         value={prazo}
                         onChange={(e) => setPrazo(e.target.value)}
                         required
                     />
-                </div>
-                <button type="submit">Criar Meta</button>
-            </form>
-            {mensagem && <p>{mensagem}</p>}
-        </div>
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Criar Meta
+                </Button>
+            </Form>
+        </Container>
     );
 };
 

@@ -2,35 +2,90 @@ import axios from 'axios';
 
 const API_URL = '/api/metas-sonho';
 
-// Função para obter as metas do usuário
+
+const api = axios.create({
+  baseURL: 'http://localhost:8080', 
+});
+
+
+const handleError = (error, context) => {
+  console.error(`Erro ao ${context}:`, error);
+  throw error; 
+};
+
+
 const getMetasSonho = async (usuarioId) => {
-    const response = await axios.get(API_URL, { params: { usuarioId } });
-    return response.data;
-};
-
-// Função para criar uma nova meta
-const createMetaSonho = async (metaSonho) => {
-    const response = await axios.post(API_URL, metaSonho);
-    return response.data;
-};
-
-// Função para atualizar uma meta existente
-const updateMetaSonho = async (id, metaSonho) => {
-    const response = await axios.put(`${API_URL}/${id}`, metaSonho);
-    return response.data;
-};
-
-// Função para deletar uma meta
-const deleteMetaSonho = async (id) => {
-    await axios.delete(`${API_URL}/${id}`);
-};
-
-// Função para adicionar valor à meta
-const adicionarValorMeta = async (id, valorAdicional) => {
-    const response = await axios.patch(`${API_URL}/${id}/adicionar-valor`, null, {
-        params: { valorAdicional }
+  try {
+    const token = localStorage.getItem('token'); 
+    const response = await api.get(API_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+      params: { usuarioId },
     });
-    return response.data;
+    return response.data; 
+  } catch (error) {
+    handleError(error, 'buscar metas de sonho');
+  }
+};
+
+
+const createMetaSonho = async (metaSonho) => {
+  try {
+    const token = localStorage.getItem('token'); 
+    const response = await api.post(API_URL, metaSonho, {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+    return response.data; 
+  } catch (error) {
+    handleError(error, 'criar meta de sonho');
+  }
+};
+
+
+const updateMetaSonho = async (id, metaSonho) => {
+  try {
+    const token = localStorage.getItem('token'); 
+    const response = await api.put(`${API_URL}/${id}`, metaSonho, {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+    return response.data; 
+  } catch (error) {
+    handleError(error, 'atualizar meta de sonho');
+  }
+};
+
+const deleteMetaSonho = async (id) => {
+  try {
+    const token = localStorage.getItem('token'); 
+    await api.delete(`${API_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+  } catch (error) {
+    handleError(error, 'deletar meta de sonho');
+  }
+};
+
+
+const adicionarValorMeta = async (id, valorAdicional) => {
+  try {
+    const token = localStorage.getItem('token'); 
+    const response = await api.patch(`${API_URL}/${id}/adicionar-valor`, null, {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+      params: { valorAdicional },
+    });
+    return response.data; 
+  } catch (error) {
+    handleError(error, 'adicionar valor à meta de sonho');
+  }
 };
 
 export { getMetasSonho, createMetaSonho, updateMetaSonho, deleteMetaSonho, adicionarValorMeta };

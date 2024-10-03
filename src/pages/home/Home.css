@@ -1,31 +1,27 @@
-/* src/assets/styles/App.css */
 .custom-container {
-    max-width: 500px; /* Ajuste a largura máxima conforme necessário */
-    margin: 0 auto; /* Centraliza o Container horizontalmente */
-  
+    max-width: 500px;
+    margin: 0 auto;
+}
 
-  }
-  
-  .custom-card {
-    max-width: 300px; /* Ajuste a largura máxima do Card */
-    margin: 0 auto; /* Centraliza o Card horizontalmente */
-  }
-  
-  .custom-heading {
-    font-size: 1.5rem; /* Ajusta o tamanho da fonte do heading */
-    margin-bottom: 1rem; /* Ajusta o espaçamento inferior */
-  }
-  
-  .custom-alert {
-    margin-bottom: 1rem; /* Ajusta o espaçamento inferior do Alert */
-  }
-  
-  .custom-card-title {
-    font-size: 1.25rem; /* Ajusta o tamanho da fonte do título do Card */
-  }
-  
-  .custom-card-text h2 {
-    font-size: 1.5rem; /* Ajusta o tamanho da fonte do texto do Card */
-    margin-bottom: 0; /* Remove a margem inferior do texto */
-  }
-  
+.custom-card {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.custom-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.custom-alert {
+    margin-bottom: 1rem;
+}
+
+.custom-card-title {
+    font-size: 1.25rem;
+}
+
+.custom-card-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
