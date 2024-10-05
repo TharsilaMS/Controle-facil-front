@@ -1,97 +1,58 @@
-
 .header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 10px; 
-  background-color: #F5F5F5;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  transition: transform 0.3s ease;
+  background: #fff;
+  padding: 10px 20px; /* Espaçamento interno */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+  position: relative; /* Para o efeito de rolagem */
+  transition: all 0.3s ease; /* Transição suave para scroll */
 }
 
-.header.hidden {
-  transform: translateY(-100%);
-}
-
-.logo img {
-  height: 40px; 
-}
-
-.header-content {
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
-.navbar-nav {
-  list-style: none;
-  display: flex; 
-  gap: 15px; 
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-nav li {
-  margin: 0;
-}
-
-.navbar-nav a {
-  text-decoration: none;
-  color: #048552;
-  font-size: 14px; 
-}
-
-.home-header-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.app-header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.home-header-content .navbar-nav {
-  display: flex;
-  flex-direction: row; 
-  gap: 10px; 
-}
-
-.app-header-content .navbar-nav {
-  display: flex; 
-  flex-direction: row; 
-  gap: 10px; 
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 5px; 
-}
-
-.auth-buttons button {
-  padding: 5px 10px; 
-  border-radius: 50px;
-  border: none;
-  background-color: #048552;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.auth-buttons button:hover {
-  background-color: #036c43;
+.logo {
+  height: 40px; /* Altura do logo */
 }
 
 .title {
-  font-size: 20px; 
+  margin-left: 10px; /* Margem entre logo e título */
+  font-size: 24px; /* Tamanho do texto */
+}
+
+.nav-list {
+  list-style: none; /* Remove marcador da lista */
+  display: flex;
+  gap: 20px; /* Espaçamento entre os itens */
+}
+
+.nav-item {
+  display: inline; /* Exibe itens na mesma linha */
+}
+
+.nav-link {
+  text-decoration: none; /* Remove sublinhado */
+  color: #000; /* Cor do texto */
+}
+
+.button {
+  padding: 5px 10px; /* Espaçamento do botão */
+  border-radius: 20px ; /* Remove borda */
+  background-color: #239467; /* Cor de fundo do botão */
+  color: #fff; /* Cor do texto do botão */
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: background-color 0.3s, color 0.3s; /* Transição suave para as alterações de cor */
+  border: none;
+}
+
+.button:hover {
+  background-color: #000000; /* Nova cor de fundo ao passar o mouse */
+  color: #ffffff; /* Cor do texto ao passar o mouse */
+}
+
+
+.auth-buttons {
+  display: flex; /* Alinhamento dos botões de autenticação */
+  gap: 20px; /* Espaçamento entre os botões */
 }

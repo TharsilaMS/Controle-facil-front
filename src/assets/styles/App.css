@@ -1,37 +1,38 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 html, body {
-  margin: 0;           /* Remove margens padrão */
-  padding: 0;          /* Remove preenchimentos padrão */
-  width: 100%;         /* 100% da largura */
-  height: 100%;        /* 100% da altura */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
+
 .App {
   text-align: center;
   background-color: #d6f9e1;
-
 }
+
 .hero {
-  display: flex; /* Usar Flexbox para alinhar o conteúdo lado a lado */
-  align-items: center; /* Alinha verticalmente ao centro */
-  padding: 60px 0; /* Espaçamento superior e inferior */
-  margin: 0; /* Remove margens externas */ 
-  
+  display: flex;
+  align-items: center;
+  padding: 60px 0;
+  margin: 0;
 }
 
 .hero h1 {
-  flex: 1; /* Faz com que o texto ocupe o espaço disponível */
-  margin-right: 20px; /* Espaço entre o texto e a imagem */
+  flex: 1;
+  margin-right: 20px;
 }
 
 .hero .col-md-6 {
-  flex: 1; /* Faz com que a imagem ocupe o espaço restante */
-  padding: 0; /* Remove o padding da coluna */
+  flex: 1;
+  padding: 0;
 }
 
-.subtitle{
+.subtitle {
   display: block;
 }
+
 .features {
   display: flex;
   justify-content: space-around;
@@ -45,8 +46,55 @@ html, body {
 }
 
 .hero img {
-  display: block; /* Remove o espaço abaixo da imagem */
-  max-width: 100%; /* Garante que a imagem não exceda o contêiner */
-  height: auto; /* Mantém a proporção da imagem */
-  margin: 0; /* Remove qualquer margem externa */
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.features {
+  padding: 20px 0;
+}
+
+.features-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.features-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.features-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.feature-card {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 20px;
+  margin: 10px;
+  width: calc(33% - 20px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.feature-card:hover {
+  background: #d6f9e1;
+  transform: translateY(-5px);
+}
+
+.feature-content h3 {
+  color: #276349;
+  transition: color 0.3s;
+}
+
+.feature-card:hover .feature-content h3 {
+  color: #000000;
 }

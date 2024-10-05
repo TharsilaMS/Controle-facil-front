@@ -1,19 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HeaderHome from './components/header/Header'; 
 import FooterHome from './components/footer/Footer'; 
 import Feature from './components/feature/Feature';
-import DespesasPage from './pages/DespesasPages'; 
-import NovaDespesaForm from './components/despesa/NovaDespesaForm'; 
-import NovaRenda from './components/renda/NovaRenda'; 
-import RendaPage from './pages/RendaPage'; 
+import DespesasPage from './home/despesa/DespesasPages'; 
+import NovaDespesaForm from './home/despesa/NovaDespesaForm'; 
+import NovaRenda from './home/renda/NovaRenda'; 
+import RendaPage from './home/renda/RendaPage'; 
 import './assets/styles/App.css';
 import revenueBro from './assets/images/Revenue-bro.png';
-import Home from './pages/home/Home'; 
-import PrevisaoGastosPage from './pages/PrevisaoGastosPage';
-import CreatePrevisaoGastosPage from './pages/CriarPrevisaoGastosPage';
-import MetaSonhoList from './pages/MetaSonhoList'; 
-import CriarMetaSonho from './pages/CriarMetaSonho'; 
+import Home from './home/Home'; 
+import PrevisaoGastosPage from './home/previsao/PrevisaoGastosPage';
+import CreatePrevisaoGastosPage from './home/previsao/NovaPrevisaoGastosPage';
+import MetaSonhoList from './home/meta/MetaSonhoPage'; 
+import CriarMetaSonho from './home/meta/NovaMetaSonho';
 import Login from './components/Login';
 import Register from './components/Register';
 
@@ -34,56 +34,69 @@ function App() {
           element={
             <Layout>
               <div className="App">
-              <section className="hero text-center py-5">
-  <div className="container">
-    <h1 className="display-4">
-      Controle suas finanças, de uma forma <span className="text-primary">simples</span> para uma vida financeira mais inteligente.
-    </h1>
-    <img 
-      src={revenueBro} 
-      alt="Descrição da Imagem" 
-      className="hero-image img-fluid" 
-      style={{ width: '50%', maxWidth: '300px' }} 
-    />
-  </div>
-</section>
-
-                <section className="features py-5">
+                <section className="hero text-center py-5">
                   <div className="container">
-                    <div className="subtitle text-center mb-4">
-                      <h2>Nossos principais recursos</h2>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-4 mb-4">
-                        <Feature 
-                          title="Limite de gastos" 
-                          description="Defina o quanto você pode gastar em cada categoria e economize sem esforço." 
-                          icon="fa-bullseye"
-                        />
-                      </div>
-                      <div className="col-md-4 mb-4">
-                        <Feature 
-                          title="Controle por Categoria" 
-                          description="Organize seus gastos por categoria, para maior controle." 
-                          icon="fa-tag"
-                        />
-                      </div>
-                      <div className="col-md-4 mb-4">
-                        <Feature 
-                          title="Controles futuros" 
-                          description="Marque futuras despesas ou recebimentos no calendário." 
-                          icon="fa-calendar-alt"
-                        />
-                      </div>
-                    </div>
+                    <h1 className="hero-title">
+                      Controle suas finanças, de uma forma <span className="highlight">simples</span> para uma vida financeira mais inteligente.
+                    </h1>
+                    <img 
+                      src={revenueBro} 
+                      alt="Descrição da Imagem" 
+                      className="hero-image" 
+                      style={{ width: '50%', maxWidth: '300px' }} 
+                    />
                   </div>
                 </section>
-                <section className="shortcuts py-5">
-                  <div className="container">
-                    <h2 className="text-center mb-4">Atalhos</h2>
-                    <ul className="list-inline text-center">
-                      <li className="list-inline-item"><Link to="/home" className="btn btn-link">Home</Link></li>
-                    </ul>
+
+                <section className="features" id="features">
+                  <div className="features-container">
+                    <div className="features-title">
+                      <h2>Nossos principais recursos</h2>
+                    </div>
+                    <div className="features-list">
+                      <div className="feature-card">
+                        <Feature 
+                          title="Limite de gastos" 
+                          description="Defina o quanto você pode gastar e economize sem esforço." 
+                          icon="fas fa-money-bill-wave" 
+                        />
+                      </div>
+                      <div className="feature-card">
+                        <Feature 
+                          title="Controle por Categoria" 
+                          description="Organize seus gastos em diferentes categorias para facilitar o acompanhamento e controle das despesas." 
+                          icon="fa-th-list" 
+                        />
+                      </div>
+                      <div className="feature-card">
+                        <Feature 
+                          title="Metas" 
+                          description="Estabeleça metas financeiras claras para ajudá-lo a alcançar seus objetivos de economia." 
+                          icon="fa-bullseye" 
+                        />
+                      </div>
+                      <div className="feature-card">
+                        <Feature 
+                          title="Dashboard" 
+                          description="Dashboard para o controle de gastos e acompanhamento de metas, garantindo uma gestão financeira eficaz." 
+                          icon="fas fa-chart-pie" 
+                        />
+                      </div>
+                      <div className="feature-card">
+                        <Feature 
+                          title="Saldo" 
+                          description="Monitore seu saldo atual para ter maior controle do seu dinheiro." 
+                          icon="fa-wallet" 
+                        />
+                      </div>
+                      <div className="feature-card">
+                        <Feature 
+                          title="Notificações" 
+                          description="Receba lembretes diários para registrar suas despesas." 
+                          icon="fa-bell" 
+                        />
+                      </div>
+                    </div>
                   </div>
                 </section>
               </div>
