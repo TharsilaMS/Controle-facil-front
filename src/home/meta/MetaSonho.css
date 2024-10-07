@@ -1,0 +1,12 @@
+.title-meta{
+    text-align:center;
+    color: black;
+}
+.edicao{
+    display: flex;
+    gap:20px;
+    align-items: end;
+}
+strong{
+    font-size: 20px;
+}

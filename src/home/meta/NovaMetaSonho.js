@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { createMetaSonho, getMetasSonho } from '../../service/MetaSonhoService'; 
 import { Button, Form, Container, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './MetaSonho.css'
+import '../../components/Button.css'
 const CriarMetaSonho = () => {
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -71,8 +73,8 @@ const CriarMetaSonho = () => {
     };
 
     return (
-        <Container className="mt-4" style={{ paddingTop: '80px' }}>
-            <h1>Criar Nova Meta de Sonho</h1>
+        <Container className="mt-4" >
+            <h1>Criar Nova Meta</h1>
             <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
                 {success && <Alert variant="success">{success}</Alert>}
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -127,7 +129,7 @@ const CriarMetaSonho = () => {
                 </Button>
             </Form>
             <div>  <Link to="/home" className="btn btn-secondary mt-3">
-        Voltar para Home
+            Página Principal
     </Link></div>
         </Container>
     );

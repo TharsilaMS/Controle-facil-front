@@ -7,4 +7,8 @@
   .category-background {
     background-color: #f0f0f0; 
   }
-  
+  .btn btn-secondary mt-3{
+    background-color: #ff5733; 
+    color: #fff; 
+    border: none; 
+  }

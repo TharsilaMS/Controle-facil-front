@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createDespesa } from '../../service/Api';
 import { Button, Form, Container, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import '../../components/Button.css'
 const NovaDespesaForm = () => {
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState('');
@@ -48,8 +49,8 @@ const NovaDespesaForm = () => {
   };
 
   return (
-    <Container className="mt-4" style={{ paddingTop: '80px' }}>
-      <h2>Adicionar Nova Despesa</h2>
+    <Container className="mt-4">
+      <h2>Nova Despesa</h2>
       <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
         {success && <Alert variant="success">{success}</Alert>}
         {error && <Alert variant="danger">{error}</Alert>}
@@ -122,7 +123,7 @@ const NovaDespesaForm = () => {
         </Button>
       </Form>
       <div>  <Link to="/home" className="btn btn-secondary mt-3">
-        Voltar para Home
+      Página Principal
     </Link></div>
     </Container>
   );

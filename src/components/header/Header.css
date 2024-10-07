@@ -1,58 +1,71 @@
 .header {
   background: #fff;
-  padding: 10px 20px; /* Espaçamento interno */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
-  position: relative; /* Para o efeito de rolagem */
-  transition: all 0.3s ease; /* Transição suave para scroll */
+  padding: 10px 20px;
+  position: relative;
+  transition: all 0.3s ease;
+  margin-right: 40px;
 }
 
 .header-container {
+  height: 80px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin-left: 20px;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .logo {
-  height: 40px; /* Altura do logo */
+  height: 200px;
 }
 
-.title {
-  margin-left: 10px; /* Margem entre logo e título */
-  font-size: 24px; /* Tamanho do texto */
+.nav-container {
+  margin-bottom: -55px;
 }
 
 .nav-list {
-  list-style: none; /* Remove marcador da lista */
+  list-style: none;
   display: flex;
-  gap: 20px; /* Espaçamento entre os itens */
+  gap: 20px;
 }
 
 .nav-item {
-  display: inline; /* Exibe itens na mesma linha */
+  display: inline;
 }
 
 .nav-link {
-  text-decoration: none; /* Remove sublinhado */
-  color: #000; /* Cor do texto */
+  text-decoration: none;
+  color: #000;
+  padding-bottom: 5px;
+  transition: border-bottom 0.3s ease;
+}
+
+.nav-link.active {
+  border-bottom: 3px solid #239467;
 }
 
 .button {
-  padding: 5px 10px; /* Espaçamento do botão */
-  border-radius: 20px ; /* Remove borda */
-  background-color: #239467; /* Cor de fundo do botão */
-  color: #fff; /* Cor do texto do botão */
-  cursor: pointer; /* Cursor de ponteiro */
-  transition: background-color 0.3s, color 0.3s; /* Transição suave para as alterações de cor */
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #239467;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
   border: none;
 }
 
 .button:hover {
-  background-color: #000000; /* Nova cor de fundo ao passar o mouse */
-  color: #ffffff; /* Cor do texto ao passar o mouse */
+  background-color: #303030;
+  color: #ffffff;
 }
 
-
 .auth-buttons {
-  display: flex; /* Alinhamento dos botões de autenticação */
-  gap: 20px; /* Espaçamento entre os botões */
+  display: flex;
+  gap: 20px;
+}
+
+.opcoes {
+  display: flex;
+  gap: 20px;
+  margin-right: 20px;
 }

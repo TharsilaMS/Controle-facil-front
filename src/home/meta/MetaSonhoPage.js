@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';  
+import { Link } from 'react-router-dom'; 
 import { getMetasSonho, adicionarValorMeta, updateMetaSonho, deleteMetaSonho } from '../../service/MetaSonhoService'; 
-
+import './MetaSonho.css'
 const MetaSonhoList = () => {
   const [metas, setMetas] = useState([]);
   const [valorAdicional, setValorAdicional] = useState({});
@@ -84,7 +85,7 @@ const MetaSonhoList = () => {
 
   return (
     <div>
-      <h2>Metas dos Sonhos</h2>
+      <h2 className='title-meta'>Metas</h2>
       {metas.length === 0 ? (
         <p>Você não tem nenhuma meta estabelecida ainda.</p>
       ) : (
@@ -93,7 +94,7 @@ const MetaSonhoList = () => {
             <li key={meta.id} className={`list-group-item d-flex justify-content-between align-items-center ${meta.valorEconomizado >= meta.valorAlvo ? 'bg-success text-white' : ''}`}>
               <div>
                 {editandoMeta === meta.id ? (
-                  <div>
+                  <div >
                     <input
                       type="text"
                       value={metaEditada.titulo}
@@ -118,7 +119,7 @@ const MetaSonhoList = () => {
                 )}
               </div>
 
-              <div>
+              <div className='edicao'>
                 <input
                   type="number"
                   className="form-control"
@@ -149,6 +150,13 @@ const MetaSonhoList = () => {
           ))}
         </ul>
       )}
+
+      
+      <div className="text-center">
+        <Link to="/home" className="btn btn-secondary mt-3">
+          Página Principal
+        </Link>
+      </div>
     </div>
   );
 };

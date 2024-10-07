@@ -1,25 +1,17 @@
 .feature {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    
-  }
-  
-  .feature-icon {
-    font-size: 24px;
-  
-    color: #000000;
-  }
-  
-  .feature-content h3 {
-    margin: 0;
-    font-size: 18px;
-    color: #048552;
-  }
-  
-  .feature-content p {
-    margin: 5px 0 0;
-  }
-.features{
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.feature-content h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.feature-content p {
+  margin: 5px 0 0;
+}
+
+.features {
   background: #fff;
-  }
+}

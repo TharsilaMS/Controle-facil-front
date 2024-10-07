@@ -6,6 +6,7 @@ import { formatarSaldo } from '../utils';
 import { getPrevisaoGastos } from '../service/PrevisaoGastosServices';
 import { getMetasSonho } from '../service/MetaSonhoService';
 import Logout from '../components/Logout'; 
+import './Home.css';
 
 const Home = () => {
   const [saldo, setSaldo] = useState(null);
@@ -88,10 +89,10 @@ const Home = () => {
   };
 
   return (
-    <Container className="mt-4" style={{ paddingTop: '80px' }}>
+    <Container className="mt-4" >
       <Row className="align-items-center">
         <Col>
-          <h1>Bem-vindo ao Controle Fácil</h1>
+          <h1>Bem-vindo(a) ao Controle Fácil </h1>
         </Col>
         <Col className="text-end">
           <Link to="/nova-despesa">
@@ -113,7 +114,7 @@ const Home = () => {
         <Alert variant="danger">{error}</Alert>
       ) : (
         <>
-          <Card className="mt-4">
+          <Card className="saldo-card">
             <Card.Body>
               <Card.Title>Saldo Atual</Card.Title>
               <div>

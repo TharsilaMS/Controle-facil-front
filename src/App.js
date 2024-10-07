@@ -1,4 +1,6 @@
-import React from 'react';
+// src/App.js
+
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HeaderHome from './components/header/Header'; 
 import FooterHome from './components/footer/Footer'; 
@@ -26,6 +28,35 @@ const Layout = ({ children }) => (
 );
 
 function App() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  const faqData = [
+    {
+      pergunta: "O que é o Controle Fácil?",
+      resposta: "O Controle Fácil é um site projetado para ajudar jovens e profissionais a gerenciar suas finanças pessoais, organizando despesas e receitas, além de estabelecer metas financeiras."
+    },
+    {
+      pergunta: "Como posso criar uma conta no Controle Fácil?",
+      resposta: "Você pode criar uma conta clicando no botão 'Criar conta' na página inicial e seguindo as instruções para preencher suas informações."
+    },
+    {
+      pergunta: "Quais funcionalidades estão disponíveis no Controle Fácil?",
+      resposta: "O Controle Fácil oferece funcionalidades como: Cadastro de despesas e receitas, Previsão de gastos, Relatórios de gastos mensais, Metas de economia, Notificações para lembrar de registrar suas despesas."
+    },
+    {
+      pergunta: "Posso editar ou excluir despesas já registradas?",
+      resposta: "Sim! Você pode editar ou excluir despesas na seção de despesas, selecionando a despesa que deseja modificar e escolhendo a opção correspondente."
+    },
+    {
+      pergunta: "O site é seguro para registrar minhas informações financeiras?",
+      resposta: "Sim, o Controle Fácil adota medidas de segurança para proteger suas informações pessoais e financeiras. Todos os dados são armazenados de forma segura."
+    }
+  ];
+
   return (
     <Router>
       <Routes>
@@ -35,15 +66,13 @@ function App() {
             <Layout>
               <div className="App">
                 <section className="hero text-center py-5">
-                  <div className="container">
+                  <div className="container-principal">
                     <h1 className="hero-title">
-                      Controle suas finanças, de uma forma <span className="highlight">simples</span> para uma vida financeira mais inteligente.
-                    </h1>
+                  <span className='destaque'>  Controle</span>  suas finanças de maneira prática, inteligente e eficiente, tornando sua vida financeira mais organizada e  <span className='destaque'>fácil.</span>                    </h1>
                     <img 
                       src={revenueBro} 
                       alt="Descrição da Imagem" 
                       className="hero-image" 
-                      style={{ width: '50%', maxWidth: '300px' }} 
                     />
                   </div>
                 </section>
@@ -57,7 +86,7 @@ function App() {
                       <div className="feature-card">
                         <Feature 
                           title="Limite de gastos" 
-                          description="Defina o quanto você pode gastar e economize sem esforço." 
+                          description="Defina um limite de gastos e receba um alerta quando ultrapassar o valor , ajudando a economizar e evitar excessos." 
                           icon="fas fa-money-bill-wave" 
                         />
                       </div>
@@ -85,24 +114,43 @@ function App() {
                       <div className="feature-card">
                         <Feature 
                           title="Saldo" 
-                          description="Monitore seu saldo atual para ter maior controle do seu dinheiro." 
+                          description="Acompanhe seu saldo atual e tenha mais controle sobre suas finanças para tomar decisões conscientes." 
                           icon="fa-wallet" 
                         />
                       </div>
                       <div className="feature-card">
                         <Feature 
                           title="Notificações" 
-                          description="Receba lembretes diários para registrar suas despesas." 
+                          description="Receba lembretes diários para registrar suas despesas, garantindo um controle contínuo e atualizado do seu orçamento." 
                           icon="fa-bell" 
                         />
                       </div>
                     </div>
                   </div>
                 </section>
+
+                <section className="perguntas-frequentes">
+                  <h2>Perguntas Frequentes</h2>
+                  <div className="perguntas-container">
+                    {faqData.map((item, index) => (
+                      <div key={index}>
+                        <div className="perguntas" onClick={() => toggleAccordion(index)}>
+                          <h3>{item.pergunta}</h3>
+                        </div>
+                        {activeIndex === index && (
+                          <div className="respostas">
+                            <p>{item.resposta}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </section>
               </div>
             </Layout>
           }
         />
+   
         <Route path="/despesas" element={<Layout><DespesasPage /></Layout>} />
         <Route path="/home" element={<Layout><Home /></Layout>} />
         <Route path="/nova-despesa" element={<Layout><NovaDespesaForm /></Layout>} />

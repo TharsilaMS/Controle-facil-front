@@ -9,10 +9,13 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    text-decoration: none; 
+  color: inherit;
 }
 a{
     text-decoration: none;
     color: inherit;
+    
    
 }
 .social-media{
@@ -22,6 +25,8 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+    fill: #ff5722;
+    font-size: 20px;
 }
 
 html, body {
@@ -44,4 +49,12 @@ html, body {
     padding: 1rem;
     text-align: center;
   }
-  
+  .social-media a {
+    color: #303030;
+    text-decoration: none; 
+    transition: color 0.3s; 
+}
+
+.social-media a:hover {
+    color: #ffffff;
+}

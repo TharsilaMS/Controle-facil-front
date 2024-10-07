@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'; 
 import { getPrevisaoGastos, updatePrevisaoGastos } from '../../service/PrevisaoGastosServices';
-import { formatarSaldo } from '../../utils'; // Certifique-se de que o caminho esteja correto
+import { formatarSaldo } from '../../utils'; 
 import { Link } from 'react-router-dom';
+import './PrevisaoGastos.css';
+
 const PrevisaoGastosPage = () => {
   const [previsaoGastos, setPrevisaoGastos] = useState(null);
   const [editMode, setEditMode] = useState(false);
@@ -96,8 +98,8 @@ const PrevisaoGastosPage = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-success">Salvar</button>
-        <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancelar</button>
+        <button type="submit" className="btn btn-salvar">Salvar</button>
+        <button type="button" className="btn btn-cancelar" onClick={onCancel}>Cancelar</button>
       </form>
     );
   };
@@ -124,19 +126,19 @@ const PrevisaoGastosPage = () => {
               onCancel={handleCancel}
             />
           ) : (
-            <button className="btn btn-primary" onClick={() => setEditMode(true)}>Editar</button>
+            <button className="btn btn-editar" onClick={() => setEditMode(true)}>Editar</button>
           )}
         </div>
       ) : (
         <p>Carregando...</p>
       )}
-       <div>  <Link to="/home" className="btn btn-secondary mt-3">
-        Voltar para Home
-    </Link></div>
+       <div>  
+         <Link to="/home" className="btn btn-voltar mt-3">
+           Página Principal
+         </Link>
+       </div>
     </div>
-    
   );
-  
 };
 
 export default PrevisaoGastosPage;

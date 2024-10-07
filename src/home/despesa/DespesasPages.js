@@ -3,7 +3,7 @@ import { getDespesasByUsuarioId, updateDespesa, deleteDespesa } from '../../serv
 import { Container, ListGroup, Spinner, Alert, Card, Button, Modal, Form } from 'react-bootstrap';
 import './DespesasPage.css'; 
 import { formatarSaldo } from '../../utils'; 
-
+import { Link} from 'react-router-dom'; 
 const DespesasPage = () => {
   const [despesas, setDespesas] = useState([]);
   const [filteredDespesas, setFilteredDespesas] = useState([]);
@@ -98,7 +98,7 @@ const DespesasPage = () => {
   if (loading) {
     return (
       <Container className="mt-4 text-center">
-        <h1>Lista de Despesas</h1>
+        <h1>Minhas Despesas</h1>
         <Spinner animation="border" variant="primary" />
         <p className="mt-3">Carregando...</p>
       </Container>
@@ -108,15 +108,15 @@ const DespesasPage = () => {
   if (error) {
     return (
       <Container className="mt-4 text-center">
-        <h1>Lista de Despesas</h1>
+        <h1>Minhas Despesas</h1>
         <Alert variant="danger">{error}</Alert>
       </Container>
     );
   }
 
   return (
-    <Container className="mt-4" style={{ paddingTop: '80px' }}>
-      <h1 className="mb-4 text-center">Lista de Despesas</h1>
+    <Container className="mt-4" >
+      <h1 className="mb-4 text-center">Minhas Despesas</h1>
       <Form className="mb-4">
         <Form.Group className="mb-3" controlId="searchNome">
           <Form.Label>Pesquisar por nome:</Form.Label>
@@ -151,7 +151,7 @@ const DespesasPage = () => {
                   {new Date(despesa.data).toLocaleDateString()}
                 </Card.Subtitle>
                 <Card.Text>
-                  Valor: <strong>{formatarSaldo(despesa.valor)}</strong> {/* Chama formatarSaldo */}
+                  Valor: <strong>{formatarSaldo(despesa.valor)}</strong> 
                 </Card.Text>
                 <ListGroup variant="flush">
                   <ListGroup.Item className="text-center">
@@ -239,6 +239,9 @@ const DespesasPage = () => {
           <Button variant="primary" onClick={handleSaveChanges}>Salvar Alterações</Button>
         </Modal.Footer>
       </Modal>
+      <Link to="/home" className="btn btn-secondary mt-3">
+      Página Principal
+            </Link>
     </Container>
   );
 };

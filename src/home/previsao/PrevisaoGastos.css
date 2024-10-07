@@ -1,0 +1,32 @@
+.btn-editar {
+    background-color: #048552; /* Verde para o botão Editar */
+    color: white; /* Cor do texto */
+  }
+  
+  .btn-salvar {
+    background-color: #048552; /* Verde para o botão Salvar */
+    color: white; /* Cor do texto */
+    margin: 10px
+  }
+  
+  .btn-cancelar {
+    background-color: red; /* Vermelho para o botão Cancelar */
+    color: white; /* Cor do texto */
+  }
+  
+  .btn-voltar {
+    background-color: #525252ff; /* Cor especificada para Voltar */
+    color: white; /* Cor do texto */
+  }
+  .btn-editar:hover {
+    background-color: #525252ff; /* Cor de fundo ao passar o mouse */
+    color:#ffff;
+}
+.card-title{
+    margin: 18px;
+    justify-content: center;
+    display: flex;
+}
+h1{
+    text-align: center;
+}

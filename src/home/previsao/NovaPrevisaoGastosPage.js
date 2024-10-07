@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'; 
 import { createPrevisaoGastos, getPrevisaoGastos } from '../../service/PrevisaoGastosServices';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Button, Form, Container, Alert } from 'react-bootstrap';
+import './PrevisaoGastos.css';
+import '../../components/Button.css'
 const CriarPrevisaoGastosPage = () => {
   const usuarioId = localStorage.getItem('usuarioId');
   const [previsaoExistente, setPrevisaoExistente] = useState(null);
@@ -65,48 +68,46 @@ const CriarPrevisaoGastosPage = () => {
     };
 
     return (
-      <form onSubmit={handleSubmit} className="mt-3">
-        <div className="mb-3">
-          <label className="form-label">Limite de Gastos:</label>
-          <input 
+      <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm mt-3">
+        <Form.Group className="mb-3">
+          <Form.Label>Previsão de Gastos</Form.Label>
+          <Form.Control 
             type="number"
-            className="form-control"
             value={limiteGastos}
             onChange={(e) => setLimiteGastos(e.target.value)}
             required
           />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Data de Revisão:</label>
-          <input 
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Data de Revisão</Form.Label>
+          <Form.Control 
             type="date"
-            className="form-control"
             value={dataRevisao}
             onChange={(e) => setDataRevisao(e.target.value)}
             required
           />
-        </div>
-        <button type="submit" className="btn btn-success">Salvar</button>
-        <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancelar</button>
-      </form>
+        </Form.Group>
+        
+        <Button variant="success" type="submit">Salvar</Button>
+        <Button variant="secondary" onClick={onCancel} className="ms-2">Cancelar</Button>
+      </Form>
     );
   };
 
   return (
-    <div className="container mt-5">
+    <Container className="mt-5">
       <h1>Criar Previsão de Gastos</h1>
       {loading && <div>Carregando...</div>} 
       <PrevisaoGastosForm onSubmit={handleCreate} />
       {message && (
-        <div className={`alert alert-${alertType} mt-3`} role="alert">
+        <Alert variant={alertType} className="mt-3">
           {message}
-        </div>
+        </Alert>
       )} 
-        <div>  <Link to="/home" className="btn btn-secondary mt-3">
-        Voltar para Home
-    </Link></div>
-    </div>
-    
+      <Link to="/home" className="btn btn-secondary mt-3">
+        Página Principal
+      </Link>
+    </Container>
   );
 };
 

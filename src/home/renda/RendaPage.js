@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getRendasByUsuarioId, updateRenda, deleteRenda } from '../../service/RendasApi';
 import { Container, Row, Col, Card, ListGroup, Spinner, Alert, Button, Modal, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import './RendaPage.css';
+import './Renda.css';
 import { formatarSaldo } from '../../utils'; 
 import { Link } from 'react-router-dom';
 const RendasPage = () => {
@@ -52,7 +52,7 @@ const RendasPage = () => {
             descricao: renda.descricao,
             valor: renda.valor,
             data: new Date(renda.data).toISOString().split('T')[0],
-            tipo: renda.tipo // Incluindo tipo no formulário de edição
+            tipo: renda.tipo 
         });
         setShowEditModal(true);
     };
@@ -78,7 +78,7 @@ const RendasPage = () => {
 
         try {
             await updateRenda(selectedRenda.id, updatedRenda);
-            // Atualiza a lista de rendas
+            
             const updatedRendas = rendas.map((r) => (r.id === selectedRenda.id ? updatedRenda : r));
             setRendas(updatedRendas);
             setShowEditModal(false);
@@ -87,7 +87,7 @@ const RendasPage = () => {
         }
     };
 
-    // Função para filtrar rendas
+    
     const getFilteredRendas = () => {
         return rendas.filter(renda => {
             return filtroTipo ? renda.tipo === filtroTipo : true;
@@ -97,7 +97,7 @@ const RendasPage = () => {
     if (loading) {
         return (
             <Container className="mt-4 text-center">
-                <h1>Lista de Rendas</h1>
+                <h1>Minhas Receitas</h1>
                 <Spinner animation="border" variant="primary" />
                 <p className="mt-3">Carregando...</p>
             </Container>
@@ -107,17 +107,17 @@ const RendasPage = () => {
     if (error) {
         return (
             <Container className="mt-4 text-center">
-                <h1>Lista de Rendas</h1>
+                <h1>Minhas Receitas</h1>
                 <Alert variant="danger">{error}</Alert>
             </Container>
         );
     }
 
     return (
-        <Container className="mt-4" style={{ paddingTop: '80px' }}>
-            <h1 className="mb-4 text-center">Lista de Rendas</h1>
+        <Container className="mt-4" >
+            <h1 className="mb-4 text-center">Minhas Receitas</h1>
             
-            {/* Filtros */}
+          
             <Form className="mb-4">
                 <Form.Group controlId="filtroTipo">
                     <Form.Label>Filtrar por Tipo</Form.Label>
@@ -144,7 +144,7 @@ const RendasPage = () => {
                                     {new Date(renda.data).toLocaleDateString()} 
                                 </Card.Subtitle>
                                 <Card.Text>
-                                    Valor: <strong>{formatarSaldo(renda.valor)}</strong> {/* Usando formatarSaldo aqui */}
+                                    Valor: <strong>{formatarSaldo(renda.valor)}</strong> 
                                 </Card.Text>
                                 <ListGroup variant="flush">
                                     <ListGroup.Item className="text-center">
@@ -219,7 +219,7 @@ const RendasPage = () => {
                 </Modal.Footer>
             </Modal>
             <div>  <Link to="/home" className="btn btn-secondary mt-3">
-        Voltar para Home
+            Página Principal
     </Link></div>
         </Container>
         
