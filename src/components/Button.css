@@ -72,3 +72,16 @@
 }
 
 
+.btn-criar-conta{
+    background-color: #525252; 
+    color: white;
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-criar-conta:hover {
+    background-color: #434343; 
+}

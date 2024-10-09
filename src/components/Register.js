@@ -39,8 +39,14 @@ const Register = () => {
         <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-md-8 col-lg-6">
-                    <h2 className="text-center mb-4">Crie sua conta</h2>
-                    <form onSubmit={handleSubmit} className="border p-4 shadow-sm rounded">
+                    <h2 className="text-center mb-4">Dê o Primeiro Passo para o Sucesso Financeiro!</h2>
+                    <form 
+                        onSubmit={handleSubmit} 
+                        className="border p-4 shadow-sm rounded" 
+                        style={{ marginBottom: '80px',
+                            backgroundColor: '#048552ff'
+                         }} 
+                    >
                         <div className="mb-3">
                             <label className="form-label">Nome:</label>
                             <input
@@ -120,7 +126,7 @@ const Register = () => {
                             </select>
                         </div>
                         {errorMessage && <p className="text-danger">{errorMessage}</p>}
-                        <button type="submit" className="btn btn-primary w-100">Criar conta</button>
+                        <button type="submit" className="btn-criar-conta w-100">Criar conta</button>
                     </form>
                 </div>
             </div>

@@ -50,7 +50,9 @@ const Login = () => {
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <h2 className="text-center">Acesse sua conta</h2>
-                    <form onSubmit={handleSubmit} className="border p-4 shadow-sm rounded">
+                    <form onSubmit={handleSubmit} className="border p-4 shadow-sm rounded"style={{backgroundColor: '#048552ff'
+                         }}>
+                     
                         <div className="mb-3">
                             <label className="form-label">Email:</label>
                             <input
@@ -71,7 +73,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary w-100">Entrar</button>
+                        <button type="submit" className="btn-criar-conta w-100">Entar</button>
                     </form>
                     {error && <p className="text-danger mt-3">{error}</p>}
                     {success && <p className="text-success mt-3">{success}</p>}
