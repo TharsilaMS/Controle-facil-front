@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getDespesasByUsuarioId, updateDespesa, deleteDespesa } from '../../service/Api';
+import { getDespesasByUsuarioId, updateDespesa, deleteDespesa } from '../../service/Apis';
 import { Container, ListGroup, Spinner, Alert, Card, Button, Modal, Form } from 'react-bootstrap';
 import './DespesasPage.css'; 
 import { formatarSaldo } from '../../utils'; 

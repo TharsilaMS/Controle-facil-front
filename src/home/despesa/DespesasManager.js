@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { deleteDespesa, getDespesasByUsuarioId } from '../../service/Api';
+import { deleteDespesa, getDespesasByUsuarioId } from '../../service/Apis';
 import { useHistory } from 'react-router-dom';
 
 const DespesasManager = () => {
