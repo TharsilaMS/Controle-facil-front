@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createDespesa } from '../../service/Apis';
-import { Button, Form, Container, Spinner, Alert } from 'react-bootstrap';
+import { Form, Container, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../../components/Button.css'
 const NovaDespesaForm = () => {
@@ -111,16 +111,16 @@ const NovaDespesaForm = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" disabled={loading}>
+       {loading}
           {loading ? (
             <>
               <Spinner as="span" animation="border" size="sm" className="me-2" />
               Carregando...
             </>
           ) : (
-            'Salvar'
+            <button type="submit" className="custom-button">Salvar</button> 
           )}
-        </Button>
+        
       </Form>
       <div>  <Link to="/home" className="btn-voltar">
       Página Principal
