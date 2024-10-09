@@ -98,7 +98,7 @@ const DespesasPage = () => {
   if (loading) {
     return (
       <Container className="mt-4 text-center">
-        <h1>Minhas Despesas</h1>
+        <h2>Minhas Despesas</h2>
         <Spinner animation="border" variant="primary" />
         <p className="mt-3">Carregando...</p>
       </Container>
@@ -108,7 +108,7 @@ const DespesasPage = () => {
   if (error) {
     return (
       <Container className="mt-4 text-center">
-        <h1>Minhas Despesas</h1>
+        <h2>Minhas Despesas</h2>
         <Alert variant="danger">{error}</Alert>
       </Container>
     );
@@ -116,7 +116,7 @@ const DespesasPage = () => {
 
   return (
     <Container className="mt-4" >
-      <h1 className="mb-4 text-center">Minhas Despesas</h1>
+      <h2 className="mb-4 text-center">Minhas Despesas</h2>
       <Form className="mb-4">
         <Form.Group className="mb-3" controlId="searchNome">
           <Form.Label>Pesquisar por nome:</Form.Label>
@@ -172,14 +172,12 @@ const DespesasPage = () => {
           </div>
         ))}
       </div>
-      {/* Modal de Edição */}
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Despesa</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form>
-            {/* Inputs de edição */}
             <div className="mb-3">
               <label htmlFor="descricao" className="form-label">Descrição</label>
               <input
@@ -239,7 +237,7 @@ const DespesasPage = () => {
           <Button variant="primary" onClick={handleSaveChanges}>Salvar Alterações</Button>
         </Modal.Footer>
       </Modal>
-      <Link to="/home" className="btn btn-secondary mt-3">
+      <Link to="/home" className="btn-voltar">
       Página Principal
             </Link>
     </Container>

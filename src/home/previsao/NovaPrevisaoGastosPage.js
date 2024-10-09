@@ -21,7 +21,6 @@ const CriarPrevisaoGastosPage = () => {
           }
         } catch (error) {
           console.error("Erro ao buscar previsão de gastos", error);
-          setMessage("Erro ao buscar previsão de gastos"); 
           setAlertType('danger'); 
         }
       }
@@ -96,7 +95,7 @@ const CriarPrevisaoGastosPage = () => {
 
   return (
     <Container className="mt-5">
-      <h1>Criar Previsão de Gastos</h1>
+      <h2>Criar Previsão de Gastos</h2>
       {loading && <div>Carregando...</div>} 
       <PrevisaoGastosForm onSubmit={handleCreate} />
       {message && (
@@ -104,9 +103,10 @@ const CriarPrevisaoGastosPage = () => {
           {message}
         </Alert>
       )} 
-      <Link to="/home" className="btn btn-secondary mt-3">
+      <Link to="/home" className="btn-voltar">
         Página Principal
       </Link>
+      
     </Container>
   );
 };

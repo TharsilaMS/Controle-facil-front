@@ -62,12 +62,7 @@ const Header = () => {
                   <li className="nav-item">
                     <Link to="/metas" className={`nav-link ${location.pathname === '/metas' ? 'active' : ''}`}>Metas</Link>
                   </li>
-                  <li className="nav-item">
-                    <Link to="/create-previsao-gastos-page" className={`nav-link ${location.pathname === '/create-previsao-gastos-page' ? 'active' : ''}`}>Criar Previsão</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/nova-meta" className={`nav-link ${location.pathname === '/nova-meta' ? 'active' : ''}`}>Nova Meta</Link>
-                  </li>
+                  
                 </>
               )}
             </ul>

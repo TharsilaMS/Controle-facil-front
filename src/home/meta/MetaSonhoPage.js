@@ -1,18 +1,31 @@
-import React, { useState, useEffect, useCallback } from 'react';  
-import { Link } from 'react-router-dom'; 
-import { getMetasSonho, adicionarValorMeta, updateMetaSonho, deleteMetaSonho } from '../../service/MetaSonhoService'; 
-import './MetaSonho.css'
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import { getMetasSonho, adicionarValorMeta, updateMetaSonho, deleteMetaSonho } from '../../service/MetaSonhoService';
+import { formatarSaldo } from '../../utils';
+import './MetaSonho.css';
+
 const MetaSonhoList = () => {
   const [metas, setMetas] = useState([]);
   const [valorAdicional, setValorAdicional] = useState({});
-  const [editandoMeta, setEditandoMeta] = useState(null); 
-  const [metaEditada, setMetaEditada] = useState({}); 
-  const usuarioId = localStorage.getItem('usuarioId'); 
+  const [editandoMeta, setEditandoMeta] = useState(null);
+  const [metaEditada, setMetaEditada] = useState({});
+  const [metaAtiva, setMetaAtiva] = useState(false);
+  const [mensagemSucesso, setMensagemSucesso] = useState('');
+  const usuarioId = localStorage.getItem('usuarioId');
 
   const fetchMetas = useCallback(async () => {
     try {
-      const fetchedMetas = await getMetasSonho(usuarioId); 
+      const fetchedMetas = await getMetasSonho(usuarioId);
+
+      fetchedMetas.sort((a, b) => {
+        if (a.status === 'ATIVA' && b.status !== 'ATIVA') return -1;
+        if (a.status !== 'ATIVA' && b.status === 'ATIVA') return 1;
+        return 0;
+      });
+
       setMetas(fetchedMetas);
+      const ativa = fetchedMetas.some(meta => meta.status === 'ATIVA');
+      setMetaAtiva(ativa);
     } catch (error) {
       console.error('Erro ao buscar metas:', error);
     }
@@ -38,13 +51,12 @@ const MetaSonhoList = () => {
       }
 
       await adicionarValorMeta(metaId, valor);
-
       const metaAtualizada = metas.find(meta => meta.id === metaId);
       if (metaAtualizada.valorEconomizado + valor >= metaAtualizada.valorAlvo) {
         alert('Parabéns! Você atingiu sua meta!');
       }
 
-      alert('Valor adicionado com sucesso!');
+      setMensagemSucesso('Valor adicionado com sucesso!');
       setValorAdicional({ ...valorAdicional, [metaId]: '' });
       fetchMetas();
     } catch (error) {
@@ -54,15 +66,15 @@ const MetaSonhoList = () => {
   };
 
   const handleEditarMeta = (meta) => {
-    setEditandoMeta(meta.id); 
-    setMetaEditada(meta); 
+    setEditandoMeta(meta.id);
+    setMetaEditada(meta);
   };
 
   const handleSalvarEdicao = async (metaId) => {
     try {
       await updateMetaSonho(metaId, metaEditada);
       alert('Meta editada com sucesso!');
-      setEditandoMeta(null); 
+      setEditandoMeta(null);
       fetchMetas();
     } catch (error) {
       console.error('Erro ao editar a meta:', error);
@@ -84,29 +96,43 @@ const MetaSonhoList = () => {
   };
 
   return (
-    <div>
-      <h2 className='title-meta'>Metas</h2>
+    <div className="container mt-5">
+      <h2 >Minhas Metas</h2>
+      < div className='nova-meta'>
+        {!metaAtiva && (
+          <Link to="/nova-meta" className="btn btn-primary ms-3">
+            Criar Nova Meta
+          </Link>
+        )}
+      </div>
+      {mensagemSucesso && (
+        <div className="alert alert-success" role="alert">
+          {mensagemSucesso}
+        </div>
+      )}
       {metas.length === 0 ? (
-        <p>Você não tem nenhuma meta estabelecida ainda.</p>
+        <div className="alert alert-info" role="alert">
+          Você não tem nenhuma meta estabelecida ainda.
+        </div>
       ) : (
         <ul className="list-group">
           {metas.map(meta => (
             <li key={meta.id} className={`list-group-item d-flex justify-content-between align-items-center ${meta.valorEconomizado >= meta.valorAlvo ? 'bg-success text-white' : ''}`}>
-              <div>
+              <div className="me-3">
                 {editandoMeta === meta.id ? (
-                  <div >
+                  <div>
                     <input
                       type="text"
                       value={metaEditada.titulo}
                       onChange={(e) => setMetaEditada({ ...metaEditada, titulo: e.target.value })}
-                      className="form-control"
+                      className="form-control mb-2"
                     />
                     <textarea
                       value={metaEditada.descricao}
                       onChange={(e) => setMetaEditada({ ...metaEditada, descricao: e.target.value })}
-                      className="form-control mt-2"
+                      className="form-control mb-2"
                     />
-                    <button className="btn btn-success mt-2" onClick={() => handleSalvarEdicao(meta.id)}>
+                    <button className="btn btn-success" onClick={() => handleSalvarEdicao(meta.id)}>
                       Salvar Edição
                     </button>
                   </div>
@@ -114,7 +140,7 @@ const MetaSonhoList = () => {
                   <div>
                     <strong>{meta.titulo}</strong>: {meta.descricao}
                     <br />
-                    (Alvo: R$ {meta.valorAlvo}, Economizado: R$ {meta.valorEconomizado})
+                    Alvo: {formatarSaldo(meta.valorAlvo)} <br /> Economizado: {formatarSaldo(meta.valorEconomizado)}
                   </div>
                 )}
               </div>
@@ -122,14 +148,14 @@ const MetaSonhoList = () => {
               <div className='edicao'>
                 <input
                   type="number"
-                  className="form-control"
+                  className="form-control mb-2"
                   placeholder="Adicione um valor"
                   value={valorAdicional[meta.id] || ''}
                   onChange={(e) => handleInputChange(meta.id, e.target.value)}
                   disabled={meta.valorEconomizado >= meta.valorAlvo}
                 />
                 <button
-                  className="btn btn-primary mt-2"
+                  className="btn btn-primary"
                   onClick={() => handleAdicionarValor(meta.id)}
                   disabled={meta.valorEconomizado >= meta.valorAlvo}
                 >
@@ -137,10 +163,10 @@ const MetaSonhoList = () => {
                 </button>
                 {editandoMeta !== meta.id && (
                   <>
-                    <button className="btn btn-warning mt-2" onClick={() => handleEditarMeta(meta)}>
+                    <button className="btn btn-warning ms-2" onClick={() => handleEditarMeta(meta)}>
                       Editar
                     </button>
-                    <button className="btn btn-danger mt-2" onClick={() => handleExcluirMeta(meta.id)}>
+                    <button className="btn btn-danger ms-2" onClick={() => handleExcluirMeta(meta.id)}>
                       Excluir
                     </button>
                   </>
@@ -151,9 +177,8 @@ const MetaSonhoList = () => {
         </ul>
       )}
 
-      
-      <div className="text-center">
-        <Link to="/home" className="btn btn-secondary mt-3">
+      <div className="d-flex justify-content-between mt-4">
+        <Link to="/home" className="btn-voltar">
           Página Principal
         </Link>
       </div>

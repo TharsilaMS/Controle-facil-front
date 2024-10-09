@@ -97,7 +97,7 @@ const RendasPage = () => {
     if (loading) {
         return (
             <Container className="mt-4 text-center">
-                <h1>Minhas Receitas</h1>
+                <h2>Minhas Receitas</h2>
                 <Spinner animation="border" variant="primary" />
                 <p className="mt-3">Carregando...</p>
             </Container>
@@ -107,7 +107,7 @@ const RendasPage = () => {
     if (error) {
         return (
             <Container className="mt-4 text-center">
-                <h1>Minhas Receitas</h1>
+                <h2>Minhas Receitas</h2>
                 <Alert variant="danger">{error}</Alert>
             </Container>
         );
@@ -115,7 +115,7 @@ const RendasPage = () => {
 
     return (
         <Container className="mt-4" >
-            <h1 className="mb-4 text-center">Minhas Receitas</h1>
+            <h2 className="mb-4 text-center">Minhas Receitas</h2>
             
           
             <Form className="mb-4">
@@ -218,7 +218,7 @@ const RendasPage = () => {
                     <Button variant="primary" onClick={handleSaveChanges}>Salvar Alterações</Button>
                 </Modal.Footer>
             </Modal>
-            <div>  <Link to="/home" className="btn btn-secondary mt-3">
+            <div>  <Link to="/home" className="btn-voltar">
             Página Principal
     </Link></div>
         </Container>

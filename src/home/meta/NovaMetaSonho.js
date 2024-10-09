@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { createMetaSonho, getMetasSonho } from '../../service/MetaSonhoService'; 
-import { Button, Form, Container, Alert } from 'react-bootstrap';
+import { createMetaSonho, getMetasSonho } from '../../service/MetaSonhoService';
+import { Form, Container, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './MetaSonho.css'
 import '../../components/Button.css'
+import { formatarSaldo } from '../../utils';
+
 const CriarMetaSonho = () => {
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [valorAlvo, setValorAlvo] = useState('');
     const [prazo, setPrazo] = useState('');
-   
+
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState('');
-    const [metaAtiva, setMetaAtiva] = useState(false); 
+    const [metaAtiva, setMetaAtiva] = useState(false);
 
-    const usuarioId = localStorage.getItem('usuarioId'); 
+    const usuarioId = localStorage.getItem('usuarioId');
 
-   
     useEffect(() => {
         const verificarMetaAtiva = async () => {
             try {
                 const metas = await getMetasSonho(usuarioId);
-                const ativa = metas.some(meta => meta.status === 'ATIVA'); 
+                const ativa = metas.some(meta => meta.status === 'ATIVA');
                 setMetaAtiva(ativa);
             } catch (error) {
                 console.error('Erro ao verificar metas ativas:', error);
@@ -34,16 +35,15 @@ const CriarMetaSonho = () => {
 
     const formatarData = (data) => {
         const partes = data.split('-');
-        return `${partes[2]}/${partes[1]}/${partes[0]}`; 
+        return `${partes[2]}/${partes[1]}/${partes[0]}`;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-      
         if (metaAtiva) {
             setError('Você já possui uma meta ativa. Conclua sua meta atual antes de criar uma nova.');
-            setSuccess(''); 
+            setSuccess('');
             return;
         }
 
@@ -51,30 +51,30 @@ const CriarMetaSonho = () => {
             titulo,
             descricao,
             valorAlvo: parseFloat(valorAlvo),
-            valorEconomizado: 0.00,  
-            prazo: formatarData(prazo), 
-            usuarioId, 
-            status: 'ATIVA',         
+            valorEconomizado: 0.00,
+            prazo: formatarData(prazo),
+            usuarioId,
+            status: 'ATIVA',
         };
 
         try {
-            const result = await createMetaSonho(novaMeta); 
-            setSuccess(`Meta criada com sucesso: ${result.titulo}`);
+            const result = await createMetaSonho(novaMeta);
+            setSuccess(`Meta criada com sucesso: ${result.titulo} com valor alvo de ${formatarSaldo(result.valorAlvo)}`); 
             setTitulo('');
             setDescricao('');
             setValorAlvo('');
             setPrazo('');
-            setError(null); 
-            setMetaAtiva(true); 
+            setError(null);
+            setMetaAtiva(true);
         } catch (error) {
             setError('Erro ao criar a meta. Verifique os dados e tente novamente.');
-            setSuccess(''); 
+            setSuccess('');
         }
     };
 
     return (
         <Container className="mt-4" >
-            <h1>Criar Nova Meta</h1>
+            <h2 className="mt-4 text-center">Defina Sua Nova Meta</h2>
             <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
                 {success && <Alert variant="success">{success}</Alert>}
                 {error && <Alert variant="danger">{error}</Alert>}
@@ -123,14 +123,15 @@ const CriarMetaSonho = () => {
                         required
                     />
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Criar Meta
-                </Button>
+                <div className=" btn-meta" >
+                <button type="submit" className="custom-button">Salvar</button> 
+                </div>
             </Form>
-            <div>  <Link to="/home" className="btn btn-secondary mt-3">
-            Página Principal
-    </Link></div>
+            <div>
+                <Link to="/home" className="btn-voltar">
+                    Página Principal
+                </Link>
+            </div>
         </Container>
     );
 };

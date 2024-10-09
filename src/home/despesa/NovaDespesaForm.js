@@ -122,7 +122,7 @@ const NovaDespesaForm = () => {
           )}
         </Button>
       </Form>
-      <div>  <Link to="/home" className="btn btn-secondary mt-3">
+      <div>  <Link to="/home" className="btn-voltar">
       Página Principal
     </Link></div>
     </Container>

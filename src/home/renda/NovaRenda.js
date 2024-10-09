@@ -48,7 +48,7 @@ const NovaRenda = () => {
 
     return (
         <div className="container mt-5">
-            <h1 className="title-renda">Nova Receita</h1>
+            <h2 className="title-renda">Nova Receita</h2>
             {loading && (
                 <div className="d-flex justify-content-center mb-4">
                     <div className="spinner-border text-primary" role="status">

@@ -10,3 +10,17 @@
 strong{
     font-size: 20px;
 }
+.alert.alert-info {
+    background-color: #d6f9e1ff; 
+    color: #000000;
+    border-radius: 20px #d6f9e1ff; 
+    display: flex;
+    justify-content: space-evenly;
+    border: #d6f9e1ff;
+  }
+.nova-meta
+{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
