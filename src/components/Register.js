@@ -19,7 +19,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            await axios.post('https://controle-facil-backend-production-a348.up.railway.app', {
+            await axios.post('https://controle-facil-backend-production-a348.up.railway.app/api/usuarios', {
                 nome,
                 email,
                 senha,
