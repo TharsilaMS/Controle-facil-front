@@ -2,47 +2,46 @@ import React, { useState } from 'react';
 import { createDespesa } from '../../service/Apis';
 import { Form, Container, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../../components/Button.css'
+import '../../components/Button.css';
+
 const NovaDespesaForm = () => {
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState('');
   const [categoria, setCategoria] = useState('');
-  const [tipo, setTipo] = useState('FIXA'); 
+  const [tipo, setTipo] = useState('FIXA');
   const [data, setData] = useState('');
-  const [loading, setLoading] = useState(false); 
-  const [success, setSuccess] = useState(''); 
-  const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState(null);
 
-  
-  const usuarioId = localStorage.getItem('usuarioId'); 
+  const usuarioId = localStorage.getItem('usuarioId');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); 
-    setError(null); 
-    setSuccess(''); 
+    setLoading(true);
+    setError(null);
+    setSuccess('');
 
-    const despesa = { 
-      usuarioId, 
-      descricao, 
-      valor: parseFloat(valor), 
+    const despesa = {
+      usuarioId,
+      descricao,
+      valor: parseFloat(valor),
       categoriaDespesaNome: categoria,
       tipo,
-      data 
+      data
     };
 
     try {
       await createDespesa(despesa);
       setSuccess('Despesa salva com sucesso!');
 
-     
       setDescricao('');
       setValor('');
       setCategoria('');
-      setTipo('FIXA'); 
-      setData(''); 
+      setTipo('FIXA');
+      setData('');
     } catch (err) {
-      setError('Erro ao salvar despesa.'); 
+      setError('Erro ao salvar despesa.');
     } finally {
       setLoading(false);
     }
@@ -50,8 +49,8 @@ const NovaDespesaForm = () => {
 
   return (
     <Container className="mt-4">
-      <h2>Nova Despesa</h2>
-      <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
+      <h2 className='header-title'>Nova Despesa</h2>
+      <Form onSubmit={handleSubmit} className="p-4 despesa-border rounded shadow-sm">
         {success && <Alert variant="success">{success}</Alert>}
         {error && <Alert variant="danger">{error}</Alert>}
         
@@ -111,20 +110,20 @@ const NovaDespesaForm = () => {
           />
         </Form.Group>
 
-       {loading}
-          {loading ? (
-            <>
-              <Spinner as="span" animation="border" size="sm" className="me-2" />
-              Carregando...
-            </>
-          ) : (
-            <button type="submit" className="custom-button">Salvar</button> 
-          )}
-        
+        {loading ? (
+          <>
+            <Spinner as="span" animation="border" size="sm" className="me-2" />
+            Carregando...
+          </>
+        ) : (
+          <button type="submit" className="custom-button">Salvar</button>
+        )}
       </Form>
-      <div>  <Link to="/home" className="btn-voltar">
-      Página Principal
-    </Link></div>
+      <div>
+        <Link to="/home" className="btn-voltar">
+          Página Principal
+        </Link>
+      </div>
     </Container>
   );
 };

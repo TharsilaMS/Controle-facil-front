@@ -3,7 +3,8 @@ import { getDespesasByUsuarioId, updateDespesa, deleteDespesa } from '../../serv
 import { Container, ListGroup, Spinner, Alert, Card, Button, Modal, Form } from 'react-bootstrap';
 import './DespesasPage.css'; 
 import { formatarSaldo } from '../../utils'; 
-import { Link} from 'react-router-dom'; 
+import { Link } from 'react-router-dom'; 
+
 const DespesasPage = () => {
   const [despesas, setDespesas] = useState([]);
   const [filteredDespesas, setFilteredDespesas] = useState([]);
@@ -98,7 +99,7 @@ const DespesasPage = () => {
   if (loading) {
     return (
       <Container className="mt-4 text-center">
-        <h2>Minhas Despesas</h2>
+      <h2 className="mb-4 text-center header-title">Minhas Despesas</h2>
         <Spinner animation="border" variant="primary" />
         <p className="mt-3">Carregando...</p>
       </Container>
@@ -108,15 +109,15 @@ const DespesasPage = () => {
   if (error) {
     return (
       <Container className="mt-4 text-center">
-        <h2>Minhas Despesas</h2>
+      <h2 className="mb-4 text-center header-title">Minhas Despesas</h2>
         <Alert variant="danger">{error}</Alert>
       </Container>
     );
   }
 
   return (
-    <Container className="mt-4" >
-      <h2 className="mb-4 text-center">Minhas Despesas</h2>
+    <Container className="mt-5">
+      <h2 className="mb-4 text-center header-title">Minhas Despesas</h2>
       <Form className="mb-4">
         <Form.Group className="mb-3" controlId="searchNome">
           <Form.Label>Pesquisar por nome:</Form.Label>
@@ -144,7 +145,7 @@ const DespesasPage = () => {
       <div className="row">
         {filteredDespesas.map((despesa) => (
           <div className="col-md-4 mb-3" key={despesa.id}>
-            <Card>
+            <Card className="card-despesa">
               <Card.Body className="text-center">
                 <Card.Title>{despesa.descricao}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
@@ -172,6 +173,7 @@ const DespesasPage = () => {
           </div>
         ))}
       </div>
+
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Despesa</Modal.Title>

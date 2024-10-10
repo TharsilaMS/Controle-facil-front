@@ -3,7 +3,8 @@ import { createPrevisaoGastos, getPrevisaoGastos } from '../../service/PrevisaoG
 import { Link } from 'react-router-dom';
 import { Button, Form, Container, Alert } from 'react-bootstrap';
 import './PrevisaoGastos.css';
-import '../../components/Button.css'
+import '../../components/Button.css';
+
 const CriarPrevisaoGastosPage = () => {
   const usuarioId = localStorage.getItem('usuarioId');
   const [previsaoExistente, setPrevisaoExistente] = useState(null);
@@ -67,7 +68,7 @@ const CriarPrevisaoGastosPage = () => {
     };
 
     return (
-      <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm mt-3">
+      <Form onSubmit={handleSubmit} className="despesa-border p-4 shadow-sm mt-3 category-background">
         <Form.Group className="mb-3">
           <Form.Label>Previsão de Gastos</Form.Label>
           <Form.Control 
@@ -87,15 +88,17 @@ const CriarPrevisaoGastosPage = () => {
           />
         </Form.Group>
         
-        <Button variant="success" type="submit">Salvar</Button>
-        <Button variant="secondary" onClick={onCancel} className="ms-2">Cancelar</Button>
+        <div className="card-body-buttons">
+          <Button variant="success" type="submit">Salvar</Button>
+          <Button variant="secondary" onClick={onCancel} className="ms-2">Cancelar</Button>
+        </div>
       </Form>
     );
   };
 
   return (
     <Container className="mt-5">
-      <h2>Criar Previsão de Gastos</h2>
+      <h2 className="header-title">Criar Previsão de Gastos</h2>
       {loading && <div>Carregando...</div>} 
       <PrevisaoGastosForm onSubmit={handleCreate} />
       {message && (
@@ -106,7 +109,6 @@ const CriarPrevisaoGastosPage = () => {
       <Link to="/home" className="btn-voltar">
         Página Principal
       </Link>
-      
     </Container>
   );
 };

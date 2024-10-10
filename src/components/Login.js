@@ -45,10 +45,11 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container"> {/* Adiciona uma nova classe para a centralização */}
+        <div className="container">
             <div className="wrapper">
                 <div className="border">
-                    <img src={images} alt="Logo da Empresa" className="logo centered-logo" /> {/* Adiciona uma nova classe para centralização do logo */}
+                   
+                <img src={images} alt="Logo da Empresa" className="logo centered-logo" /> 
                     <h2>Acesse sua conta</h2>
                     <form onSubmit={handleSubmit} id="formContent">
                         <div className="mb-3">

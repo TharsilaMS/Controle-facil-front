@@ -1,8 +1,21 @@
-.rodape { 
-  background: linear-gradient(to bottom, #048552, #235742); 
-  padding: 10px; 
-  color: var(--background-light); 
-  text-align: center; 
+.rodape {
+  background: linear-gradient(to bottom, #048552, #235742);
+  padding: 10px;
+  color: var(--background-light);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  /* Removido position: fixed e bottom: 0 */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* Isso garante que o conteúdo ocupe o espaço disponível */
 }
 
 .links-rodape {
@@ -35,7 +48,7 @@
   .rodape {
       padding: 10px; 
   }
-  
+
   .redes-sociais {
       flex-direction: row; 
   }

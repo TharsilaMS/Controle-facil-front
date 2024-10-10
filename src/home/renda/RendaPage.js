@@ -115,7 +115,7 @@ const RendasPage = () => {
 
     return (
         <Container className="mt-4" >
-            <h2 className="mb-4 text-center">Minhas Receitas</h2>
+            <h2 className="mb-4 text-center header-title ">Minhas Receitas</h2>
             
           
             <Form className="mb-4">

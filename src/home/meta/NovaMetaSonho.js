@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { createMetaSonho, getMetasSonho } from '../../service/MetaSonhoService';
 import { Form, Container, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './MetaSonho.css'
-import '../../components/Button.css'
+import './MetaSonho.css';
+import '../../components/Button.css';
 import { formatarSaldo } from '../../utils';
 
 const CriarMetaSonho = () => {
@@ -73,9 +73,9 @@ const CriarMetaSonho = () => {
     };
 
     return (
-        <Container className="mt-4" >
-            <h2 className="mt-4 text-center">Defina Sua Nova Meta</h2>
-            <Form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
+        <Container className="container">
+            <h2 className="header-title text-center">Defina Sua Nova Meta</h2>
+            <Form onSubmit={handleSubmit} className="despesa-border">
                 {success && <Alert variant="success">{success}</Alert>}
                 {error && <Alert variant="danger">{error}</Alert>}
 
@@ -123,8 +123,9 @@ const CriarMetaSonho = () => {
                         required
                     />
                 </Form.Group>
-                <div className=" btn-meta" >
-                <button type="submit" className="custom-button">Salvar</button> 
+
+                <div className="card-body-buttons">
+                    <button type="submit" className="custom-button">Salvar</button>
                 </div>
             </Form>
             <div>

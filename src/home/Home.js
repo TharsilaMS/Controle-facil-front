@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';  
+import React, { useEffect, useState } from 'react';
 import { Card, Container, Spinner, Alert, ProgressBar, Button, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import { getSaldo } from '../service/SaldosApi';
-import { formatarSaldo } from '../utils'; 
+import { formatarSaldo } from '../utils';
 import { getPrevisaoGastos } from '../service/PrevisaoGastosServices';
 import { getMetasSonho } from '../service/MetaSonhoService';
-import Logout from '../components/Logout'; 
+import Logout from '../components/Logout';
 import './Home.css';
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
   const [warningMessage, setWarningMessage] = useState('');
   const [previsaoGastos, setPrevisaoGastos] = useState(null);
   const [metaAtiva, setMetaAtiva] = useState(null);
-  const usuarioId = localStorage.getItem('usuarioId'); 
+  const usuarioId = localStorage.getItem('usuarioId');
 
   useEffect(() => {
     const fetchSaldo = async () => {
@@ -34,10 +34,13 @@ const Home = () => {
         try {
           const previsaoGastosData = await getPrevisaoGastos(usuarioId);
           setPrevisaoGastos(previsaoGastosData);
-          if (previsaoGastosData && previsaoGastosData.gastosAtuais > previsaoGastosData.limiteGastos) {
-            setWarningMessage('Atenção: Você ultrapassou sua previsão de gastos!');
-          } else {
-            setWarningMessage('');
+          if (previsaoGastosData) {
+            if (previsaoGastosData.gastosAtuais > previsaoGastosData.limiteGastos) {
+              const valorUltrapassado = previsaoGastosData.gastosAtuais - previsaoGastosData.limiteGastos;
+              setWarningMessage(`Você ultrapassou seu limite por ${formatarSaldo(valorUltrapassado)}!`);
+            } else {
+              setWarningMessage(''); // Limpa a mensagem se não ultrapassou
+            }
           }
         } catch (error) {
           console.error("Erro ao buscar previsão de gastos", error);
@@ -79,17 +82,23 @@ const Home = () => {
   const faltaParaLimite = calcularFaltaParaLimite();
 
   const getProgressVariant = () => {
-    if (!previsaoGastos) return 'primary'; 
+    if (!previsaoGastos) return 'primary';
     const { limiteGastos, gastosAtuais } = previsaoGastos;
     const porcentagem = (gastosAtuais / limiteGastos) * 100;
 
-    if (porcentagem > 100) return 'danger'; 
-    if (porcentagem >= 50) return 'warning'; 
-    return 'success'; 
+    if (porcentagem > 100) return 'danger';
+    if (porcentagem >= 50) return 'warning';
+    return 'success';
   };
 
   return (
-    <Container className="mt-4" >
+    <Container className="mt-4">
+      {warningMessage && (
+        <Alert variant="warning" className="mt-3">
+          {warningMessage}
+        </Alert>
+      )}
+
       <Row className="align-items-center">
         <Col>
           <h1>Bem-vindo(a) ao Controle Fácil </h1>
@@ -115,20 +124,14 @@ const Home = () => {
       ) : (
         <>
           <Card className="saldo-card">
+          <Card.Title>Saldo Atual</Card.Title>
             <Card.Body>
-              <Card.Title>Saldo Atual</Card.Title>
-              <div>
-                <h2>{formatarSaldo(saldo)}</h2> 
+              <div className="saldo-value-container">
+                <h2>{formatarSaldo(saldo)}</h2>
               </div>
             </Card.Body>
           </Card>
-          
-          {warningMessage && (
-            <Alert variant="warning" className="mt-3">
-              {warningMessage}
-            </Alert>
-          )}
-          
+
           {previsaoGastos && (
             <Card className="mt-4">
               <Card.Body>

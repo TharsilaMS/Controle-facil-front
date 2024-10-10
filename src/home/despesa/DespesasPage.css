@@ -1,14 +1,50 @@
 .card-body-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px; 
-  }
-  
-  .category-background {
-    background-color: #f0f0f0; 
-  }
-  .btn btn-secondary mt-3{
-    background-color: #ff5733; 
-    color: #fff; 
-    border: none; 
-  }
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+}
+
+.category-background {
+  background-color: #f0f0f0; 
+}
+
+.btn.btn-secondary.mt-3 {
+  background-color: #ff5733; 
+  color: #fff; 
+  border: none; 
+}
+
+body {
+  background-color: #f8f9fa; 
+}
+
+.container {
+  margin-top: 20px; 
+}
+
+.header-title {
+  margin: 20px; 
+  color: #048552ff;
+}
+
+.despesa-border {
+  border: 1px solid #ccc; 
+  background-color: #ffffff; 
+  padding: 20px; 
+  border-radius: 5px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.despesa-button:disabled {
+  background-color: #cccccc; 
+  cursor: not-allowed; 
+}
+.text-center {
+  display: block;
+}
+.card-despesa{
+  display: block;
+}
+.text center card-body{
+  display: block;
+}

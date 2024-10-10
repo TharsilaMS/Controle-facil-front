@@ -97,7 +97,7 @@ const MetaSonhoList = () => {
 
   return (
     <div className="container mt-5">
-      <h2 >Minhas Metas</h2>
+      <h2 className='header-title'>Minhas Metas</h2>
       < div className='nova-meta'>
         {!metaAtiva && (
           <Link to="/nova-meta" className="btn btn-primary ms-3">

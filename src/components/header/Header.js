@@ -22,8 +22,8 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Se estamos na página de login ou registro, não renderizamos o header
-  if (isAuthPage) {
+  // Se estamos na página de login, registro ou planos e preços, não renderizamos o header
+  if (isAuthPage || isPlanosPrecosPage) {
     return null; // Não renderiza nada
   }
 

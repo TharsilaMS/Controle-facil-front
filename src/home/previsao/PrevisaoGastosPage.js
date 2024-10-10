@@ -106,7 +106,7 @@ const PrevisaoGastosPage = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center">Previsão de Gastos</h2> 
+      <h2 className="text-center header-title" >Previsão de Gastos</h2> 
       <div className="text-right mt-3">
         {!previsaoGastos && (
           <Link to="/create-previsao-gastos-page" className="nova-previ">

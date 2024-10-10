@@ -1,9 +1,41 @@
+body {
+    background-color: #f8f9fa; /* Cor de fundo do corpo */
+}
+
+.container {
+    margin-top: 20px; /* Margem superior do contêiner */
+}
+
+.header-title {
+    margin: 20px; /* Margem do título */
+    color: #048552ff; /* Cor do título */
+}
+
+.renda-border {
+    border: 1px solid #ccc; /* Borda */
+    background-color: #ffffff; /* Cor de fundo */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
 .card-body-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px; 
+    display: flex; /* Usando flexbox para o layout dos botões */
+    justify-content: center; /* Centraliza os botões */
+    gap: 10px; /* Espaço entre os botões */
 }
 
 .category-background {
-    background-color: #f0f0f0; 
+    background-color: #f0f0f0; /* Cor de fundo para categorias */
+}
+
+.btn.btn-secondary.mt-3 {
+    background-color: #ff5733; /* Cor do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Sem borda */
+}
+
+.renda-button:disabled {
+    background-color: #cccccc; /* Cor do botão quando desabilitado */
+    cursor: not-allowed; /* Cursor de não permitido */
 }
