@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-
+import './Auth.css'; 
+import images from '../assets/images/logo-principal.png'; 
 const Register = () => {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -36,17 +37,15 @@ const Register = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-8 col-lg-6">
-                    <h2 className="text-center mb-4">Dê o Primeiro Passo para o Sucesso Financeiro!</h2>
+        <div className="register-container">
+            <div className="register-wrapper"> 
+                <div className="register-border"> 
+                    
                     <form 
                         onSubmit={handleSubmit} 
-                        className="border p-4 shadow-sm rounded" 
-                        style={{ marginBottom: '80px',
-                            backgroundColor: '#048552ff'
-                         }} 
-                    >
+                        className="register-form" 
+                    > <img src={images} alt="Logo da Empresa" className="logo centered-logo" /> 
+                        <h2 className="text-center mb-4">Criar conta</h2> 
                         <div className="mb-3">
                             <label className="form-label">Nome:</label>
                             <input

@@ -17,7 +17,7 @@ import MetaSonhoList from './home/meta/MetaSonhoPage';
 import CriarMetaSonho from './home/meta/NovaMetaSonho';
 import Login from './components/Login';
 import Register from './components/Register';
-
+import PlanosPrecos from './home/planos/PlanosPrecos'
 const Layout = ({ children }) => (
   <>
     <HeaderHome />
@@ -67,7 +67,7 @@ function App() {
                 <section className="hero text-center py-5">
                   <div className="container-principal">
                     <h1 className="hero-title">
-                  <span className='destaque'>  Controle</span>  suas finanças de maneira prática, inteligente e eficiente, tornando sua vida financeira mais organizada e  <span className='destaque'>fácil.</span>                    </h1>
+                  <span className='destaque'>  Controle</span>  suas finanças de maneira prática, inteligente e eficiente, tornando sua vida financeira mais organizada e  <span className='destaque'>fácil.</span></h1>
                     <img 
                       src={revenueBro} 
                       alt="Descrição da Imagem" 
@@ -162,6 +162,7 @@ function App() {
         <Route path="/nova-meta" element={<Layout><CriarMetaSonho /></Layout>} /> 
         <Route path="/register" element={<Layout><Register /></Layout>} />
         <Route path="/login" element={<Layout><Login /></Layout>} />
+        <Route path="/planos-precos" element={<Layout><PlanosPrecos /></Layout>} />
       </Routes>
     </Router>
   );

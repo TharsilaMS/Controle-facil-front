@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+import './Auth.css';
+import images from '../assets/images/logo-principal.png'; 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
-        setSuccess(null); 
+        setSuccess(null);
 
         try {
             const response = await axios.post('https://controle-facil-backend-production-a348.up.railway.app/auth/login', {
@@ -21,11 +22,11 @@ const Login = () => {
                 senha,
             });
 
-            console.log(response.data); 
+            console.log(response.data);
 
             if (response.data) {
                 localStorage.setItem('token', response.data.token);
-        
+
                 if (response.data.usuarioId) {
                     localStorage.setItem('usuarioId', response.data.usuarioId);
                 } else {
@@ -33,26 +34,23 @@ const Login = () => {
                 }
 
                 setSuccess('Login bem-sucedido!');
-                
-               
-                navigate('/home'); 
+                navigate('/home');
             } else {
                 setError('Token não recebido.');
             }
         } catch (err) {
             setError('Falha ao fazer login. Verifique suas credenciais.');
-            console.error(err); 
+            console.error(err);
         }
     };
 
     return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6">
-                    <h2 className="text-center">Acesse sua conta</h2>
-                    <form onSubmit={handleSubmit} className="border p-4 shadow-sm rounded"style={{backgroundColor: '#048552ff'
-                         }}>
-                     
+        <div className="login-container"> {/* Adiciona uma nova classe para a centralização */}
+            <div className="wrapper">
+                <div className="border">
+                    <img src={images} alt="Logo da Empresa" className="logo centered-logo" /> {/* Adiciona uma nova classe para centralização do logo */}
+                    <h2>Acesse sua conta</h2>
+                    <form onSubmit={handleSubmit} id="formContent">
                         <div className="mb-3">
                             <label className="form-label">Email:</label>
                             <input
@@ -73,10 +71,10 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <button type="submit" className="btn-criar-conta w-100">Entar</button>
+                        <button type="submit" className="btn-criar-conta w-100">Entrar</button>
                     </form>
-                    {error && <p className="text-danger mt-3">{error}</p>}
-                    {success && <p className="text-success mt-3">{success}</p>}
+                    {error && <p className="text-danger">{error}</p>}
+                    {success && <p className="text-success">{success}</p>}
                 </div>
             </div>
         </div>

@@ -9,21 +9,22 @@ const Footer = () => {
   const isHomePage = location.pathname === '/';
   const isLoginPage = location.pathname === '/login';
   const isRegisterPage = location.pathname === '/register';
+  const isPlanosPrecosPage = location.pathname === '/planos-precos';
 
-
-  if (isLoginPage || isRegisterPage) {
+  if (isLoginPage || isRegisterPage|| isPlanosPrecosPage) {
     return null;
   }
+
   return (
-    <footer className={`footer ${isHomePage ? 'home-footer' : 'app-footer'}`} id="contatos">
+    <footer className={`rodape ${isHomePage ? 'rodape-inicial' : 'rodape-aplicativo'}`} >
       {isHomePage ? (
-        <div className="home-footer-content">
-          <div className="links">
-            <div className="app-footer-content">
+        <div className="conteudo-rodape-inicial">
+          <div className="links-rodape">
+            <div className="conteudo-rodape-aplicativo">
               <p>&copy; 2024 Controle Fácil</p>
             </div>
           </div>
-          <div className="social-media">
+          <div className="redes-sociais">
             <a href="https://www.facebook.com/yourprofile" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faFacebookF} />
             </a>
@@ -36,7 +37,7 @@ const Footer = () => {
           </div>
         </div>
       ) : (
-        <div className="app-footer-content">
+        <div className="conteudo-rodape-aplicativo">
           <p>&copy; 2024 Controle Fácil</p>
         </div>
       )}

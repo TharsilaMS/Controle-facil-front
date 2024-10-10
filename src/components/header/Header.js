@@ -7,6 +7,7 @@ const Header = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  const isPlanosPrecosPage = location.pathname === '/planos-precos';
   const [scrolling, setScrolling] = useState(false);
 
   useEffect(() => {
@@ -21,9 +22,14 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Se estamos na página de login ou registro, não renderizamos o header
+  if (isAuthPage) {
+    return null; // Não renderiza nada
+  }
+
   return (
     <header className={`header ${isHomePage ? 'home-header' : 'app-header'} ${scrolling ? 'hidden' : ''}`}>
-      <div className="header-container">
+      <div className={`header-container ${isPlanosPrecosPage ? 'centered-logo' : ''}`}>
         <div className="logo-container">
           <Link to="/" className="link">
             <img src={images} alt="Logo da empresa" className="logo" />
@@ -33,7 +39,7 @@ const Header = () => {
         <div className="nav-container">
           <nav>
             <ul className="nav-list">
-              {isAuthPage ? null : isHomePage ? (
+              {isHomePage ? (
                 <>
                   <li className="nav-item">
                     <Link to="/" className={`nav-link ${location.hash === '' ? 'active' : ''}`}>Home</Link>
@@ -42,7 +48,9 @@ const Header = () => {
                     <Link to="#features" className={`nav-link ${location.hash === '#features' ? 'active' : ''}`}>Recursos</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="#contatos" className={`nav-link ${location.hash === '#contatos' ? 'active' : ''}`}>Planos e Preços</Link>
+                    <Link to="/planos-precos" className={`nav-link ${location.pathname === '/planos-precos' ? 'active' : ''}`}>
+                      Planos e Preços
+                    </Link>
                   </li> 
                 </>
               ) : (
@@ -62,7 +70,6 @@ const Header = () => {
                   <li className="nav-item">
                     <Link to="/metas" className={`nav-link ${location.pathname === '/metas' ? 'active' : ''}`}>Metas</Link>
                   </li>
-                  
                 </>
               )}
             </ul>
@@ -70,7 +77,7 @@ const Header = () => {
         </div>
 
         <div className="auth-buttons">
-          {isAuthPage ? null : isHomePage ? (
+          {isHomePage ? (
             <>
               <Link to="/register">
                 <button className="button">Criar conta</button>
