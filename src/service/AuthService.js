@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080'; 
+const API_URL = 'https://controle-facil-backend-production-a348.up.railway.app'; 
 
 export const login = async (loginData) => {
     try {

@@ -16,7 +16,7 @@ const Login = () => {
         setSuccess(null); 
 
         try {
-            const response = await axios.post('http://localhost:8080/auth/login', {
+            const response = await axios.post('https://controle-facil-backend-production-a348.up.railway.app/auth/login', {
                 email,
                 senha,
             });

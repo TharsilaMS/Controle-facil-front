@@ -4,7 +4,7 @@ const API_URL = '/api/metas-sonho';
 
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080', 
+  baseURL: 'https://controle-facil-backend-production-a348.up.railway.app', 
 });
 
 
